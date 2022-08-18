@@ -1,5 +1,14 @@
+import { Link } from "react-router-dom";
+import { useAppDispatch } from "../hooks/redux";
+import { upCardData } from "../store/CardDataSlice";
+
 export default function ProductCard({ data }) {
 	const { title, rating, price, titleImageUrl, characteristics } = data;
+	const dispatch = useAppDispatch();
+	function up(data) {
+		dispatch(upCardData(data));
+	}
+
 	return (
 		<div className="productCard">
 			<div className="productCard__like">
@@ -16,13 +25,18 @@ export default function ProductCard({ data }) {
 					/>
 				</svg>
 			</div>
-			<div className="productCard__img">
-				<img src={titleImageUrl} alt="phone" />
+			<div onClick={() => up(data)}>
+				<Link to={"/items"}>
+					<div className="productCard__img">
+						<img src={titleImageUrl} alt="phone" />
+					</div>
+					<div className="productCard__titlt">
+						<h3>{title}</h3>
+						<div className="productCard__price">{price} ₽</div>
+					</div>
+				</Link>
 			</div>
-			<div className="productCard__titlt">
-				<h3>{title}</h3>
-				<div className="productCard__price">{price} ₽</div>
-			</div>
+
 			<div className="productCard__raiting">
 				<div className="productCard__ratingStar">
 					<svg

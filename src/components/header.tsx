@@ -1,7 +1,16 @@
+import { Link } from "react-router-dom";
+import { useAppSelector } from "../hooks/redux";
+
 export default function Header() {
+	const cartItems = useAppSelector((state) => state.userSlice.value).length;
+	// const Items = cartItems;
+	// console.log(cartItems);
 	return (
 		<header className="header">
-			<div className="logo headerLogo">QPICK</div>
+			<Link to={"/"} className="logo headerLogo">
+				QPICK
+			</Link>
+
 			<div className="selectProduct">
 				<a href="#" className="selectProduct__phone">
 					<svg
@@ -26,8 +35,8 @@ export default function Header() {
 						xmlns="http://www.w3.org/2000/svg"
 					>
 						<path
-							fill-rule="evenodd"
-							clip-rule="evenodd"
+							fillRule="evenodd"
+							clipRule="evenodd"
 							d="M1.52699 2.81568C2.47384 1.83595 3.87252 1 5.5 1C8.42358 1 11 3.1311 11 6V17C11 18.6569 9.65685 20 8 20C6.34315 20 5 18.6569 5 17V10.9737C3.58653 10.8246 2.37539 10.0622 1.52699 9.18432C1.15893 8.80348 1 8.31132 1 7.85087V4.14913C1 3.68868 1.15893 3.19652 1.52699 2.81568ZM7 10.8108V17C7 17.5523 7.44771 18 8 18C8.55229 18 9 17.5523 9 17V9.85658C8.41512 10.2937 7.73374 10.621 7 10.8108ZM9 6C9 4.45062 7.54698 3 5.5 3C4.58372 3 3.68747 3.47342 3 4.16985V7.83015C3.68747 8.52658 4.58372 9 5.5 9C5.63633 9 5.77052 8.99332 5.90221 8.98038C7.74335 8.79947 9 7.44709 9 6ZM18.5 6C16.453 6 15 7.45062 15 9C15 10.4471 16.2566 11.7995 18.0978 11.9804C18.2295 11.9933 18.3637 12 18.5 12C19.4163 12 20.3125 11.5266 21 10.8301V7.16985C20.3125 6.47342 19.4163 6 18.5 6ZM15 12.8566C15.5849 13.2937 16.2663 13.621 17 13.8108V20C17 20.5523 16.5523 21 16 21C15.4477 21 15 20.5523 15 20V12.8566ZM19 13.9737C20.4135 13.8246 21.6246 13.0622 22.473 12.1843C22.8411 11.8035 23 11.3113 23 10.8509V7.14913C23 6.68868 22.8411 6.19652 22.473 5.81568C21.5262 4.83595 20.1275 4 18.5 4C15.5764 4 13 6.1311 13 9V20C13 21.6569 14.3431 23 16 23C17.6569 23 19 21.6569 19 20V13.9737Z"
 							fill="#293644"
 						/>
@@ -68,7 +77,7 @@ export default function Header() {
 							/>
 						</svg>
 					</a>
-					<div className="userMenu__cart-counter">12</div>
+					<div className="userMenu__cart-counter">{cartItems}</div>
 				</div>
 			</div>
 		</header>

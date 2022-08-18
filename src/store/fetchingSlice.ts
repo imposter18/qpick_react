@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface DataState {
-	data: [];
+	data: any;
 	isLoading: Boolean;
 	error: String;
 }
@@ -16,21 +16,21 @@ export const slice = createSlice({
 	name: "phoneData",
 	initialState,
 	reducers: {
-		getPhoneData(state) {
+		fetchingPhoneData(state) {
 			state.isLoading = true;
 		},
-		getPhoneDataSuccess(state, action: PayloadAction<[]>) {
+		fetchingPhoneDataSuccess(state, action: PayloadAction<[]>) {
 			state.isLoading = false;
 			state.error = "";
 			state.data = action.payload;
 		},
-		getPhoneDataError(state, action: PayloadAction<string>) {
+		fetchingPhoneDataError(state, action: PayloadAction<string>) {
 			state.isLoading = false;
 			state.error = action.payload;
 		},
 	},
 });
 
-export const { getPhoneDataSuccess } = slice.actions;
+// export const { getPhoneDataSuccess } = slice.actions;
 
 export default slice.reducer;
