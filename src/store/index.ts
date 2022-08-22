@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import reducer from "./fetchingSlice";
 import cardReduser from "./CardDataSlice";
 import userSlice from "./userSlice";
+import likeSlice from "./likeSlice";
 
 // export const setupStore = () => {
 // 	return configureStore({
@@ -23,6 +24,7 @@ export const setupStore = configureStore({
 		phoneDataReducer: reducer,
 		cardReduser,
 		userSlice,
+		likeSlice,
 	},
 	devTools: process.env.NODE_ENV !== "production",
 });

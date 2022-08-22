@@ -1,10 +1,24 @@
+import React from "react";
 import ProductCard from "../components/productCard";
-import { useAppSelector } from "../hooks/redux";
+import { useAppSelector, useAppDispatch } from "../hooks/redux";
+import { togleLike } from "../store/likeSlice";
 
 export default function Home() {
-	const { data, isLoading, error } = useAppSelector(
-		(state) => state.phoneDataReducer
-	);
+	const dispatch = useAppDispatch();
+	let phonesData = useAppSelector((state) => state.phoneDataReducer.data);
+	let likes = useAppSelector((state) => state.likeSlice.value);
+
+	const likeUpdateInStore = (id: number) => {
+		const cloneLikes = likes.map((item: any) => {
+			return { id: item.id, liked: item.liked };
+		});
+		for (let i = 0; i < cloneLikes.length; i++) {
+			if (cloneLikes[i].id === id) {
+				cloneLikes[i].liked = !cloneLikes[i].liked;
+			}
+		}
+		dispatch(togleLike(cloneLikes));
+	};
 
 	return (
 		<>
@@ -36,6 +50,7 @@ export default function Home() {
 								// xmlns:xlink="http://www.w3.org/1999/xlink"
 								x="0px"
 								y="0px"
+								fill="black"
 								viewBox="0 0 330 200"
 								// style="enable-background:new 0 0 330 330;"
 								// xml:space="preserve"
@@ -51,9 +66,9 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="wrapper">
-					{data.map((data, index) => (
+					{phonesData.map((data: any, index: number) => (
 						<ProductCard
-							// onClick={console.log(index)}
+							onClick={(id: number) => likeUpdateInStore(id)}
 							key={`${data.id}_${index}`}
 							data={data}
 						></ProductCard>

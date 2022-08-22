@@ -8,14 +8,25 @@ import Footer from "./components/footer";
 import EmptyCart from "./components/emptyCart";
 import Order from "./components/order";
 import { Routes, Route } from "react-router-dom";
-import Card from "./pages/cardProduct";
+import Card from "./pages/Card";
+import { togleLike } from "./store/likeSlice";
 
 function App() {
 	const dispatch = useAppDispatch();
+	let phonesData = useAppSelector((state) => state.phoneDataReducer.data);
 
 	React.useEffect(() => {
-		dispatch(fetchPhones());
+		(async function () {
+			await dispatch(fetchPhones());
+		})();
 	}, []);
+
+	React.useEffect(() => {
+		let LikeData = phonesData.map((data: any, index: any) => {
+			return { id: data.id, liked: data.liked };
+		});
+		dispatch(togleLike(LikeData));
+	}, [phonesData]);
 
 	return (
 		<div className="App">

@@ -3,8 +3,9 @@ import { useAppSelector } from "../hooks/redux";
 
 export default function Header() {
 	const cartItems = useAppSelector((state) => state.userSlice.value).length;
-	// const Items = cartItems;
-	// console.log(cartItems);
+	let likeData = useAppSelector((state) => state.likeSlice.value);
+	let likeCounter = likeData.filter((item: any) => item.liked === true).length;
+
 	return (
 		<header className="header">
 			<Link to={"/"} className="logo headerLogo">
@@ -12,7 +13,7 @@ export default function Header() {
 			</Link>
 
 			<div className="selectProduct">
-				<a href="#" className="selectProduct__phone">
+				<Link to={"/"} className="selectProduct__phone">
 					<svg
 						width="15"
 						height="21"
@@ -26,8 +27,8 @@ export default function Header() {
 						/>
 					</svg>
 					Телефоны
-				</a>
-				<a href="#" className="selectProduct__headphone">
+				</Link>
+				<Link to={"/"} className="selectProduct__headphone">
 					<svg
 						width="24"
 						height="24"
@@ -42,11 +43,11 @@ export default function Header() {
 						/>
 					</svg>
 					Наушники{" "}
-				</a>
+				</Link>
 			</div>
 			<div className="userMenu">
 				<div className="userMenu__like">
-					<a href="#">
+					<Link to={"/"}>
 						<svg
 							width="23"
 							height="20"
@@ -59,11 +60,13 @@ export default function Header() {
 								fill="#838383"
 							/>
 						</svg>
-					</a>
-					<div className="userMenu__like-counter">1</div>
+					</Link>
+					{likeCounter === 0 ? null : (
+						<div className="userMenu__like-counter">{likeCounter}</div>
+					)}
 				</div>
 				<div className="userMenu__cart">
-					<a href="#">
+					<Link to={"/"}>
 						<svg
 							width="24"
 							height="25"
@@ -76,8 +79,10 @@ export default function Header() {
 								fill="#838383"
 							/>
 						</svg>
-					</a>
-					<div className="userMenu__cart-counter">{cartItems}</div>
+					</Link>
+					{cartItems === 0 ? null : (
+						<div className="userMenu__cart-counter">{cartItems}</div>
+					)}
 				</div>
 			</div>
 		</header>
