@@ -14,3 +14,14 @@ export const fetchPhones = () => async (dispatch: AppDispatch) => {
 		dispatch(slice.actions.fetchingPhoneDataError(e.message));
 	}
 };
+
+export const fetchOnePhone = async (id: any) => {
+	try {
+		const response = await axios.get(
+			`https://62f2bd9b18493ca21f3932d6.mockapi.io/phones/${id}`
+		);
+		return response;
+	} catch (e: any) {
+		alert("Ошибка при получении данных");
+	}
+};

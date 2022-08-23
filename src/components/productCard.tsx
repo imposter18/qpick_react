@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { upCardData } from "../store/CardDataSlice";
+
 import IconIsLiked from "../assets/svg/iconIsLiked";
 import IconLike from "../assets/svg/iconLike";
 
@@ -18,12 +18,8 @@ type productCardProps = {
 
 export default function ProductCard({ data, onClick }: productCardProps) {
 	const { id, title, rating, price, titleImageUrl } = data;
-	const dispatch = useAppDispatch();
 
 	const likeData = useAppSelector((state) => state.likeSlice.value);
-	function up(data: any) {
-		dispatch(upCardData(data));
-	}
 
 	const likeUpdate = (likeData: any) => {
 		const likeDataItem = likeData.find((item: any) => item.id == id);
@@ -33,15 +29,14 @@ export default function ProductCard({ data, onClick }: productCardProps) {
 			} else return <IconLike />;
 		}
 	};
-	console.log(id);
 
 	return (
 		<div className="productCard">
 			<div onClick={() => onClick(id)} className="productCard__like">
 				{likeUpdate(likeData)}
 			</div>
-			<div onClick={() => up(data)}>
-				<Link to={"/items"}>
+			<div>
+				<Link to={`/phones/${id}`}>
 					<div className="productCard__img">
 						<img src={titleImageUrl} alt="phone" />
 					</div>

@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import reducer from "./fetchingSlice";
-import cardReduser from "./CardDataSlice";
-import userSlice from "./userSlice";
+import fetchindDataSlice from "./fetchingSlice";
+import addToCartSlice from "./addToCartSlice";
 import likeSlice from "./likeSlice";
 
 // export const setupStore = () => {
@@ -21,9 +20,8 @@ import likeSlice from "./likeSlice";
 
 export const setupStore = configureStore({
 	reducer: {
-		phoneDataReducer: reducer,
-		cardReduser,
-		userSlice,
+		fetchindDataSlice,
+		addToCartSlice,
 		likeSlice,
 	},
 	devTools: process.env.NODE_ENV !== "production",

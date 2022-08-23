@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
 
 export default function Header() {
-	const cartItems = useAppSelector((state) => state.userSlice.value).length;
+	const cartItems = useAppSelector(
+		(state) => state.addToCartSlice.value
+	).length;
 	let likeData = useAppSelector((state) => state.likeSlice.value);
 	let likeCounter = likeData.filter((item: any) => item.liked === true).length;
 

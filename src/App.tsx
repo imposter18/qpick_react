@@ -13,7 +13,7 @@ import { togleLike } from "./store/likeSlice";
 
 function App() {
 	const dispatch = useAppDispatch();
-	let phonesData = useAppSelector((state) => state.phoneDataReducer.data);
+	let phonesData = useAppSelector((state) => state.fetchindDataSlice.data);
 
 	React.useEffect(() => {
 		(async function () {
@@ -34,7 +34,7 @@ function App() {
 				<Header></Header>
 				<Routes>
 					<Route path="/" element={<Home />}></Route>
-					<Route path="/items" element={<Card />}></Route>
+					<Route path="/phones/:id" element={<Card />}></Route>
 					<Route path="/emptyCart" element={<EmptyCart />}></Route>
 					<Route path="/userCart" element={<Order />}></Route>
 				</Routes>

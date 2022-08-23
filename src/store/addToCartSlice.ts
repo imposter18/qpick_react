@@ -8,8 +8,8 @@ const initialState: DataState = {
 	value: [],
 };
 
-export const UserSlice = createSlice({
-	name: "UserSlice",
+export const addToCartSlice = createSlice({
+	name: "cart",
 	initialState,
 	reducers: {
 		addItemCart(state, action: PayloadAction<object>) {
@@ -18,6 +18,6 @@ export const UserSlice = createSlice({
 	},
 });
 
-export const { addItemCart } = UserSlice.actions;
+export const { addItemCart } = addToCartSlice.actions;
 
-export default UserSlice.reducer;
+export default addToCartSlice.reducer;

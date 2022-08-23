@@ -1,24 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
 import { useAppDispatch } from "../hooks/redux";
-import { addItemCart } from "../store/userSlice";
+import { addItemCart } from "../store/addToCartSlice";
 import { togleLike } from "../store/likeSlice";
 import IconIsLiked from "../assets/svg/iconIsLiked";
 import IconLike from "../assets/svg/iconLike";
+import { fetchOnePhone } from "../store/ActionCreators";
 
 export default function Card() {
 	const dispatch = useAppDispatch();
-	const data = useAppSelector((state) => state.cardReduser.value);
-	const { id, price, title, characteristics, titleImageUrl, ImagesUrl } = data;
+	const [onePhoneData, setonePhoneData] = useState();
+	// const data = useAppSelector((state) => state.cardReduser.value);
 
-	const addToCart = (data: object) => {
-		dispatch(addItemCart(data));
+	const addToCart = (onePhoneData) => {
+		dispatch(addItemCart(onePhoneData));
 	};
 
 	let likeData = useAppSelector((state) => state.likeSlice.value);
 
-	const likeUpdateInStore = (id: Number) => {
-		const cloneLikes = likeData.map((item: any) => {
+	const likeUpdateInStore = (id) => {
+		const cloneLikes = likeData.map((item) => {
 			return { id: item.id, liked: item.liked };
 		});
 		for (let i = 0; i < cloneLikes.length; i++) {
@@ -29,28 +31,30 @@ export default function Card() {
 		dispatch(togleLike(cloneLikes));
 	};
 
-	const likeUpdate = (likeData: any) => {
-		const likeDataItem = likeData.find((item: any) => item.id == id);
+	const likeUpdate = (likeData) => {
+		const likeDataItem = likeData.find((item) => item.id == id);
 		if (likeDataItem !== undefined) {
 			if (likeDataItem.liked === true) {
 				return <IconIsLiked />;
 			} else return <IconLike />;
 		}
 	};
+	let getUrl = useParams();
+	getUrl = getUrl.id;
 
-	// const cloneLikes = likes.map((item: any) => {
-	// 	return { id: item.id, liked: item.liked };
-	// });
+	useEffect(() => {
+		(async function set() {
+			const res = await fetchOnePhone(getUrl);
+			setonePhoneData(res.data);
+		})();
+	}, []);
+	console.log(onePhoneData);
 
-	// const likeUpdate = (id: number, cloneLikes: any) => {
-	// 	for (let i = 0; i < cloneLikes.length; i++) {
-	// 		if (cloneLikes[i].id === id) {
-	// 			cloneLikes[i].liked = !cloneLikes[i].liked;
-	// 		}
-	// 	}
-	// 	dispatch(togleLike(cloneLikes));
-	// };
-
+	if (!onePhoneData) {
+		return <>Загрузка...</>;
+	}
+	const { id, price, title, characteristics, titleImageUrl, ImagesUrl } =
+		onePhoneData;
 	return (
 		<>
 			<main>
@@ -74,7 +78,10 @@ export default function Card() {
 						<a href="#" className="productButton">
 							Купить!
 						</a>
-						<div onClick={() => addToCart(data)} className="productButton">
+						<div
+							onClick={() => addToCart(onePhoneData)}
+							className="productButton"
+						>
 							Добавить в карзину
 						</div>
 					</div>

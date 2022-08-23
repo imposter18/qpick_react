@@ -5,7 +5,7 @@ import { togleLike } from "../store/likeSlice";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
-	let phonesData = useAppSelector((state) => state.phoneDataReducer.data);
+	let phonesData = useAppSelector((state) => state.fetchindDataSlice.data);
 	let likes = useAppSelector((state) => state.likeSlice.value);
 
 	const likeUpdateInStore = (id: number) => {
