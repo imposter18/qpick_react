@@ -3,8 +3,8 @@ import { useAppSelector } from "../hooks/redux";
 
 export default function Header() {
 	const cartItems = useAppSelector(
-		(state) => state.addToCartSlice.value
-	).length;
+		(state) => state.addToCartSlice.totalCounter
+	);
 	let likeData = useAppSelector((state) => state.likeSlice.value);
 	let likeCounter = likeData.filter((item: any) => item.liked === true).length;
 
@@ -68,7 +68,7 @@ export default function Header() {
 					)}
 				</div>
 				<div className="userMenu__cart">
-					<Link to={"/"}>
+					<Link to={"/Cart"}>
 						<svg
 							width="24"
 							height="25"

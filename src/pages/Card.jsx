@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
 import { useAppDispatch } from "../hooks/redux";
 import { addItemCart } from "../store/addToCartSlice";
@@ -11,7 +11,8 @@ import { fetchOnePhone } from "../store/ActionCreators";
 export default function Card() {
 	const dispatch = useAppDispatch();
 	const [onePhoneData, setonePhoneData] = useState();
-	// const data = useAppSelector((state) => state.cardReduser.value);
+
+	// const onePhoneDataAddCounter = { ...onePhoneData, counter: 1 };
 
 	const addToCart = (onePhoneData) => {
 		dispatch(addItemCart(onePhoneData));
@@ -48,7 +49,7 @@ export default function Card() {
 			setonePhoneData(res.data);
 		})();
 	}, []);
-	console.log(onePhoneData);
+	// console.log(onePhoneData);
 
 	if (!onePhoneData) {
 		return <>Загрузка...</>;
@@ -75,15 +76,19 @@ export default function Card() {
 						<div className="productMain__price price">{price} ₽</div>
 					</div>
 					<div className="productWrapper__button ButtonBlock">
-						<a href="#" className="productButton">
+						<Link
+							to={"/cart"}
+							onClick={() => addToCart(onePhoneData)}
+							className="productButton"
+						>
 							Купить!
-						</a>
-						<div
+						</Link>
+						<button
 							onClick={() => addToCart(onePhoneData)}
 							className="productButton"
 						>
 							Добавить в карзину
-						</div>
+						</button>
 					</div>
 				</div>
 				<div className="productAbout">

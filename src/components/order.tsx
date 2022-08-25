@@ -1,27 +1,25 @@
+import { useAppSelector } from "../hooks/redux";
+import EmptyCart from "./emptyCart";
+import OrderItem from "./orderItem";
+
 export default function Order() {
+	const { items, totalPrice } = useAppSelector((state) => state.addToCartSlice);
+	// console.log(items);
+	if (!totalPrice) {
+		return <EmptyCart />;
+	}
 	return (
 		<main>
 			<div className="orderWrapper">
 				<div className="orderTitle">Корзина</div>
-				<div className="orderItem">
-					<div className="orderItem__img">
-						<img src="../assets/img/Image.png" alt="card item" />
-					</div>
-					<div className="orderItem__infoBlock">
-						<div className="orderItem__title">Apple BYZ S852I</div>
-						<div className="orderItem__price">2 999 ₽</div>
-					</div>
-					<div className="orderItem__counter counter">
-						<div className="counter__minus">-</div>
-						<div className="counter__value">1</div>
-						<div className="counter__plus">+</div>
-					</div>
-					<div className="orderItem__value">2 999 ₽</div>
-				</div>
+				{items.map((data: any, index: number) => (
+					<OrderItem key={`${data.title}__${index}`} data={data}></OrderItem>
+				))}
+
 				<div className="orderConfirm">
 					<div className="orderConfirm__top">
 						<div className="orderConfirm__title">ИТОГО</div>
-						<div className="orderConfirm__price">2 999 ₽</div>
+						<div className="orderConfirm__price">{totalPrice} ₽</div>
 					</div>
 					<div className="orderConfirm__bottom">Перейти к оформлению</div>
 				</div>
