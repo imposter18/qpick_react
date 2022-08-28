@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import fetchindDataSlice from "./fetchingSlice";
 import addToCartSlice from "./addToCartSlice";
 import likeSlice from "./likeSlice";
+import filterSlise from "./filterSlise";
 
 // export const setupStore = () => {
 // 	return configureStore({
@@ -23,6 +24,7 @@ export const setupStore = configureStore({
 		fetchindDataSlice,
 		addToCartSlice,
 		likeSlice,
+		filterSlise,
 	},
 	devTools: process.env.NODE_ENV !== "production",
 });

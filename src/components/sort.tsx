@@ -1,6 +1,16 @@
-import { useState } from "react";
+import React from "react";
+import { useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { setSort } from "../store/filterSlise";
+
+type PopupClick = MouseEvent & {
+	path: Node[];
+};
 
 export default function Sort() {
+	const sortRef = useRef(null);
+	const dispatch = useAppDispatch();
+	const sort = useAppSelector((state) => state.filterSlise.sort);
 	const [open, setOpen] = useState(false);
 	const sortList: any = [
 		{ name: "популярности (DESC)", sortProperty: "rating" },
@@ -12,23 +22,38 @@ export default function Sort() {
 	];
 
 	const onClickListItem = (obj: any) => {
+		dispatch(setSort(obj));
 		setOpen(false);
 	};
+
+	React.useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			const _event = event as PopupClick;
+
+			if (sortRef.current && !_event.path.includes(sortRef.current)) {
+				setOpen(false);
+			}
+		};
+
+		document.addEventListener("click", handleClickOutside);
+
+		return () => document.removeEventListener("click", handleClickOutside);
+	}, []);
 	return (
-		<div className="productList__sort sort">
+		<div ref={sortRef} className="productList__sort sort">
 			<div className="sort__lable">
-				Сортировать по:
 				<svg
+					className={open ? "active" : ""}
 					version="1.1"
 					id="Layer_1"
-					width="24"
-					height="24"
+					width="20"
+					height="20"
 					xmlns="http://www.w3.org/2000/svg"
 					xmlnsXlink="http://www.w3.org/1999/xlink"
 					x="0px"
-					y="0px"
+					y="10px"
 					fill="black"
-					viewBox="0 0 330 200"
+					viewBox="0 0 330 300"
 					// style="enable-background:new 0 0 330 330;"
 					xmlSpace="preserve"
 				>
@@ -39,13 +64,20 @@ export default function Sort() {
                         s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
 					/>
 				</svg>
-				<span onClick={() => setOpen(!open)}>клик</span>
+				<div className="sort__title"> Сортировать по: </div>
+				<span onClick={() => setOpen(!open)}> {sort.name}</span>
 			</div>
 			{open && (
 				<div className="sort__list">
 					<ul>
 						{sortList.map((obj: any, i: number) => (
-							<li key={i} onClick={() => onClickListItem(obj)}>
+							<li
+								className={
+									sort.sortProperty === obj.sortProperty ? "active" : ""
+								}
+								key={i}
+								onClick={() => onClickListItem(obj)}
+							>
 								{obj.name}
 							</li>
 						))}

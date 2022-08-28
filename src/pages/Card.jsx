@@ -52,7 +52,7 @@ export default function Card() {
 	// console.log(onePhoneData);
 
 	if (!onePhoneData) {
-		return <>Загрузка...</>;
+		return <h1>Загрузка...</h1>;
 	}
 	const { id, price, title, characteristics, titleImageUrl, ImagesUrl } =
 		onePhoneData;

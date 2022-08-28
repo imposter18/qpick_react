@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function EmptyCart() {
 	return (
 		<main>
@@ -12,9 +14,9 @@ export default function EmptyCart() {
 							Но это никогда не поздно исправить :)
 						</div>
 					</div>
-					<div className="emptyCart__button">
-						<div>В каталог товаров</div>
-					</div>
+					<Link to={"/"} className="emptyCart__button">
+						<span>В каталог товаров</span>
+					</Link>
 				</div>
 			</div>
 		</main>

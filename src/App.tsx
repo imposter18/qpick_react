@@ -14,12 +14,15 @@ import { togleLike } from "./store/likeSlice";
 function App() {
 	const dispatch = useAppDispatch();
 	let phonesData = useAppSelector((state) => state.fetchindDataSlice.data);
+	const { sort } = useAppSelector((state) => state.filterSlise);
 
 	React.useEffect(() => {
+		const sortBy = sort.sortProperty.replace("-", "");
+		const order = sort.sortProperty.includes("-") ? "asc" : "desc";
 		(async function () {
-			await dispatch(fetchPhones());
+			await dispatch(fetchPhones({ sortBy, order }));
 		})();
-	}, []);
+	}, [sort]);
 
 	React.useEffect(() => {
 		let LikeData = phonesData.map((data: any, index: any) => {

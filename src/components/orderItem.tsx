@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useAppDispatch } from "../hooks/redux";
 import { addItemCart } from "../store/addToCartSlice";
 import { minusItem } from "../store/addToCartSlice";
@@ -18,11 +19,14 @@ export default function OrderItem({ data }: any) {
 	const itemCartMinus = (data: any) => {
 		dispatch(minusItem(data));
 	};
+
 	return (
 		<div className="orderItem">
-			<div className="orderItem__img">
-				<img src={titleImageUrl} alt="card item" />
-			</div>
+			<Link to={`/phones/${id}`}>
+				<div className="orderItem__img">
+					<img src={titleImageUrl} alt="card item" />
+				</div>
+			</Link>
 			<div className="orderItem__infoBlock">
 				<div className="orderItem__title">{title}</div>
 				<div className="orderItem__price">{price} ₽</div>
