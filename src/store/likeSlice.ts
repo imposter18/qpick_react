@@ -5,12 +5,7 @@ interface DataState {
 }
 
 const initialState: DataState = {
-	value: [
-		{
-			id: null,
-			liked: null,
-		},
-	],
+	value: [],
 };
 
 export const LikeSlice = createSlice({
@@ -20,9 +15,20 @@ export const LikeSlice = createSlice({
 		togleLike(state, action: PayloadAction<object>) {
 			state.value = action.payload;
 		},
+		addLike(state, action: PayloadAction<any>) {
+			const findItem = state.value.find(
+				(obj: any) => obj.id === action.payload.id
+			);
+			const findIndex = state.value.indexOf(findItem);
+			if (findItem) {
+				state.value.splice(findIndex, 1);
+			} else {
+				state.value.push(action.payload);
+			}
+		},
 	},
 });
 
-export const { togleLike } = LikeSlice.actions;
+export const { togleLike, addLike } = LikeSlice.actions;
 
 export default LikeSlice.reducer;

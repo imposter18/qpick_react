@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 export default function Footer() {
 	return (
 		<div className="footerWrapper">
 			<footer className="footer">
 				<div className="footer__Logo logo">QPICK</div>
 				<div className="footer__Nav">
-					<a href="#">Избранное</a>
-					<a href="#">Корзина</a>
+					<Link to={"/likes"}>Избранное</Link>
+					<Link to={"/cart"}>Корзина</Link>
 					<a href="#">Контакты</a>
 				</div>
 				<div className="footer__LengBlock">

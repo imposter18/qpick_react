@@ -22,14 +22,12 @@ export default function ProductCard({ data, onClick }: productCardProps) {
 	const likeData = useAppSelector((state) => state.likeSlice.value);
 
 	const likeUpdate = (likeData: any) => {
-		const likeDataItem = likeData.find((item: any) => item.id == id);
-		if (likeDataItem !== undefined) {
-			if (likeDataItem.liked === true) {
-				return <IconIsLiked />;
-			} else return <IconLike />;
-		}
+		const likeDataItem = likeData.find((item: any) => item.id === id);
+		if (likeDataItem) {
+			return <IconIsLiked />;
+		} else return <IconLike />;
 	};
-
+	console.log((1000000).toLocaleString("ru"));
 	return (
 		<div className="productCard">
 			<div onClick={() => onClick(id)} className="productCard__like">
@@ -42,7 +40,6 @@ export default function ProductCard({ data, onClick }: productCardProps) {
 					</div>
 					<div className="productCard__titlt">
 						<h3>{title}</h3>
-						<div className="productCard__price">{price} ₽</div>
 					</div>
 				</Link>
 			</div>
@@ -63,6 +60,7 @@ export default function ProductCard({ data, onClick }: productCardProps) {
 					</svg>
 				</div>
 				<div className="productCard__ratingNam">{rating}</div>
+				<div className="productCard__price">{price.toLocaleString("ru")} ₽</div>
 			</div>
 		</div>
 	);

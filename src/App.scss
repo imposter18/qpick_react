@@ -106,6 +106,9 @@ body {
 	width: 235px;
 	a {
 		@extend %link-style;
+		&:hover {
+			opacity: 0.7;
+		}
 	}
 
 	&__phone {
@@ -132,6 +135,9 @@ body {
 	position: relative;
 	display: flex;
 	justify-content: end;
+	svg:hover {
+		opacity: 0.7;
+	}
 
 	&__like {
 		margin: 3px 18px auto auto;
@@ -282,13 +288,17 @@ body {
 }
 .sort {
 	position: relative;
+	font-size: 18px;
 	&__lable {
 		display: flex;
 		span {
 			margin-left: 4px;
-			color: #fe5f1e;
+			color: #ffa542;
 			border-bottom: 1px dashed #ffa542;
 			cursor: pointer;
+			&:hover {
+				opacity: 0.7;
+			}
 		}
 	}
 	&__list {
@@ -339,9 +349,12 @@ body {
 		width: 20px;
 		height: 20px;
 		svg {
-			fill: #101010;
-			color: #101010;
 			cursor: pointer;
+			&:hover {
+				// fill: #ffa542;
+				fill: black;
+				opacity: 0.7;
+			}
 		}
 	}
 	a {
@@ -350,19 +363,24 @@ body {
 	&__img {
 		text-align: center;
 		width: 300px;
-		height: 290px;
-		margin: auto;
+		height: 280px;
+		margin: 4px auto 0px;
 		img {
 			width: 100%;
 			height: 100%;
+			transition: transform 0.25s;
+			&:hover {
+				transform: scale(1.03);
+			}
 		}
 	}
 
 	&__titlt {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		margin-top: 16px;
+		// display: flex;
+		// flex-direction: row;
+		// justify-content: space-between;
+		margin-top: 12px;
+		height: 44px;
 
 		h3 {
 			font-style: normal;
@@ -419,7 +437,7 @@ body {
 @media (max-width: 575px) {
 	.productList {
 		flex-direction: column;
-		&__items {
+		gri &__items {
 			margin-top: 20px;
 		}
 	}
@@ -446,6 +464,9 @@ body {
 
 	a {
 		@extend %footerLink-style;
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 	&__Logo {
 		margin: 10px 20px;
@@ -531,6 +552,9 @@ body {
 		margin: 22px 25px;
 		float: left;
 		cursor: pointer;
+		svg:hover {
+			opacity: 0.7;
+		}
 	}
 	&__title {
 	}
@@ -576,6 +600,9 @@ body {
 	text-align: center;
 	cursor: pointer;
 	font-size: 15px;
+	&:hover {
+		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+	}
 }
 .ButtonBlock .productButton:first-child {
 	margin-bottom: 25px;
@@ -684,6 +711,33 @@ body {
 		}
 	}
 }
+
+// like
+.LikesTitle {
+	margin: 30px;
+	font-weight: 600;
+}
+.likeItemWrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 20px;
+}
+
+.likeItem {
+	&__img {
+		height: 179px;
+		width: 199px;
+		img {
+			object-fit: contain;
+			width: 100%;
+			height: 100%;
+			transition: 00.25s;
+			&:hover {
+				transform: scale(1.02);
+			}
+		}
+	}
+}
 // order
 
 .orderWrapper {
@@ -700,6 +754,7 @@ body {
 	grid-column-start: 1;
 	grid-column-end: 3;
 }
+
 .orderItem {
 	max-width: 633px;
 	width: 100%;
@@ -718,10 +773,15 @@ body {
 	&__img {
 		width: 199px;
 		height: 140px;
+
 		img {
 			width: 100%;
 			height: 100%;
 			object-fit: contain;
+			transition: 00.25s;
+			&:hover {
+				transform: scale(1.02);
+			}
 		}
 	}
 
@@ -735,14 +795,17 @@ body {
 		font-size: 17px;
 		line-height: 21px;
 		color: #1c1c27;
+		&:hover {
+			opacity: 0.7;
+		}
 	}
 
 	&__price {
 		font-weight: 600;
-		font-size: 15px;
+		font-size: 16px;
 		line-height: 18px;
-		margin-top: 12px;
-		color: #aaaaaa;
+		margin-top: 16px;
+		color: #ffa542;
 	}
 
 	&__counter {
@@ -751,12 +814,13 @@ body {
 
 	&__value {
 		font-weight: 600;
-		font-size: 15px;
+		font-size: 18px;
 		line-height: 18px;
 		color: #1c1c27;
 		justify-self: end;
 	}
 }
+
 .counter {
 	display: flex;
 	flex-direction: row;
@@ -773,6 +837,10 @@ body {
 		color: #ffffff;
 		border: 0;
 		cursor: pointer;
+		box-shadow: 0 0 5px rgba(255, 206, 127, 0.5);
+		&:hover {
+			opacity: 0.8;
+		}
 	}
 	&__minus {
 		font-size: 50px;
@@ -811,8 +879,11 @@ body {
 
 	&__title {
 	}
+	&__price {
+		font-weight: 600;
+		font-size: 18px;
+	}
 
-	&__price,
 	&__title {
 		font-weight: 600;
 		font-size: 15px;
@@ -822,7 +893,8 @@ body {
 	&__bottom {
 		position: relative;
 		top: -64px;
-		width: 348.98px;
+		left: -3px;
+		width: 349.98px;
 		height: 65px;
 		background: #101010;
 		box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
@@ -831,7 +903,9 @@ body {
 		font-size: 17px;
 		line-height: 21px;
 		text-align: center;
-		padding-top: 20px;
+		&:hover {
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+		}
 	}
 }
 

@@ -28,8 +28,10 @@ export default function OrderItem({ data }: any) {
 				</div>
 			</Link>
 			<div className="orderItem__infoBlock">
-				<div className="orderItem__title">{title}</div>
-				<div className="orderItem__price">{price} ₽</div>
+				<Link to={`/phones/${id}`} className="orderItem__title">
+					{title}
+				</Link>
+				<div className="orderItem__price">{price.toLocaleString("ru")} ₽</div>
 			</div>
 			<div className="orderItem__counter counter">
 				<button onClick={() => itemCartMinus(data)} className="counter__minus">
@@ -40,7 +42,9 @@ export default function OrderItem({ data }: any) {
 					+
 				</button>
 			</div>
-			<div className="orderItem__value">{calcCost(price, count)} ₽</div>
+			<div className="orderItem__value">
+				{calcCost(price, count).toLocaleString("ru")} ₽
+			</div>
 		</div>
 	);
 }

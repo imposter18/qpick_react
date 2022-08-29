@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
 import { useAppDispatch } from "../hooks/redux";
 import { addItemCart } from "../store/addToCartSlice";
-import { togleLike } from "../store/likeSlice";
+import { addLike } from "../store/likeSlice";
 import IconIsLiked from "../assets/svg/iconIsLiked";
 import IconLike from "../assets/svg/iconLike";
 import { fetchOnePhone } from "../store/ActionCreators";
@@ -12,8 +12,6 @@ export default function Card() {
 	const dispatch = useAppDispatch();
 	const [onePhoneData, setonePhoneData] = useState();
 
-	// const onePhoneDataAddCounter = { ...onePhoneData, counter: 1 };
-
 	const addToCart = (onePhoneData) => {
 		dispatch(addItemCart(onePhoneData));
 	};
@@ -21,24 +19,14 @@ export default function Card() {
 	let likeData = useAppSelector((state) => state.likeSlice.value);
 
 	const likeUpdateInStore = (id) => {
-		const cloneLikes = likeData.map((item) => {
-			return { id: item.id, liked: item.liked };
-		});
-		for (let i = 0; i < cloneLikes.length; i++) {
-			if (cloneLikes[i].id === id) {
-				cloneLikes[i].liked = !cloneLikes[i].liked;
-			}
-		}
-		dispatch(togleLike(cloneLikes));
+		dispatch(addLike({ id, liked: true }));
 	};
 
 	const likeUpdate = (likeData) => {
-		const likeDataItem = likeData.find((item) => item.id == id);
-		if (likeDataItem !== undefined) {
-			if (likeDataItem.liked === true) {
-				return <IconIsLiked />;
-			} else return <IconLike />;
-		}
+		const likeDataItem = likeData.find((item: any) => item.id === id);
+		if (likeDataItem) {
+			return <IconIsLiked />;
+		} else return <IconLike />;
 	};
 	let getUrl = useParams();
 	getUrl = getUrl.id;
@@ -73,7 +61,9 @@ export default function Card() {
 								<img src={titleImageUrl} alt="iphone13" />
 							</div>
 						</div>
-						<div className="productMain__price price">{price} ₽</div>
+						<div className="productMain__price price">
+							{price.toLocaleString("ru")} ₽
+						</div>
 					</div>
 					<div className="productWrapper__button ButtonBlock">
 						<Link

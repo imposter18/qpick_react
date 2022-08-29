@@ -19,9 +19,11 @@ export default function Order() {
 				<div className="orderConfirm">
 					<div className="orderConfirm__top">
 						<div className="orderConfirm__title">ИТОГО</div>
-						<div className="orderConfirm__price">{totalPrice} ₽</div>
+						<div className="orderConfirm__price">
+							{totalPrice.toLocaleString("ru")} ₽
+						</div>
 					</div>
-					<div className="orderConfirm__bottom">Перейти к оформлению</div>
+					<button className="orderConfirm__bottom">Перейти к оформлению</button>
 				</div>
 			</div>
 		</main>

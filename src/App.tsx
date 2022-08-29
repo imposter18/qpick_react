@@ -10,6 +10,7 @@ import Order from "./components/order";
 import { Routes, Route } from "react-router-dom";
 import Card from "./pages/Card";
 import { togleLike } from "./store/likeSlice";
+import Likes from "./components/likes";
 
 function App() {
 	const dispatch = useAppDispatch();
@@ -24,13 +25,6 @@ function App() {
 		})();
 	}, [sort]);
 
-	React.useEffect(() => {
-		let LikeData = phonesData.map((data: any, index: any) => {
-			return { id: data.id, liked: data.liked };
-		});
-		dispatch(togleLike(LikeData));
-	}, [phonesData]);
-
 	return (
 		<div className="App">
 			<div className="mainWrapper">
@@ -40,6 +34,7 @@ function App() {
 					<Route path="/phones/:id" element={<Card />}></Route>
 					<Route path="/emptyCart" element={<EmptyCart />}></Route>
 					<Route path="/cart" element={<Order />}></Route>
+					<Route path="/likes" element={<Likes />}></Route>
 				</Routes>
 			</div>
 			<Footer></Footer>

@@ -3,6 +3,7 @@ import ProductCard from "../components/productCard";
 import Sort from "../components/sort";
 import { useAppSelector, useAppDispatch } from "../hooks/redux";
 import { togleLike } from "../store/likeSlice";
+import { addLike } from "../store/likeSlice";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
@@ -10,15 +11,7 @@ export default function Home() {
 	let likes = useAppSelector((state) => state.likeSlice.value);
 
 	const likeUpdateInStore = (id: number) => {
-		const cloneLikes = likes.map((item: any) => {
-			return { id: item.id, liked: item.liked };
-		});
-		for (let i = 0; i < cloneLikes.length; i++) {
-			if (cloneLikes[i].id === id) {
-				cloneLikes[i].liked = !cloneLikes[i].liked;
-			}
-		}
-		dispatch(togleLike(cloneLikes));
+		dispatch(addLike({ id, liked: true }));
 	};
 
 	return (

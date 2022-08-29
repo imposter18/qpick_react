@@ -5,8 +5,7 @@ export default function Header() {
 	const cartItems = useAppSelector(
 		(state) => state.addToCartSlice.totalCounter
 	);
-	let likeData = useAppSelector((state) => state.likeSlice.value);
-	let likeCounter = likeData.filter((item: any) => item.liked === true).length;
+	let likeData = useAppSelector((state) => state.likeSlice.value).length;
 
 	return (
 		<header className="header">
@@ -49,7 +48,7 @@ export default function Header() {
 			</div>
 			<div className="userMenu">
 				<div className="userMenu__like">
-					<Link to={"/"}>
+					<Link to={"/likes"}>
 						<svg
 							width="23"
 							height="20"
@@ -63,8 +62,8 @@ export default function Header() {
 							/>
 						</svg>
 					</Link>
-					{likeCounter === 0 ? null : (
-						<div className="userMenu__like-counter">{likeCounter}</div>
+					{likeData === 0 ? null : (
+						<div className="userMenu__like-counter">{likeData}</div>
 					)}
 				</div>
 				<div className="userMenu__cart">
