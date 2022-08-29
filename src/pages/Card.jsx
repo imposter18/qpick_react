@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
 import { useAppDispatch } from "../hooks/redux";
 import { addItemCart } from "../store/addToCartSlice";
 import { addLike } from "../store/likeSlice";
 import IconIsLiked from "../assets/svg/iconIsLiked";
 import IconLike from "../assets/svg/iconLike";
-import { fetchOnePhone } from "../store/ActionCreators";
+import { fetchOneitem } from "../store/ActionCreators";
+import SkeletonCard from "../components/skeletonCard";
 
 export default function Card() {
 	const dispatch = useAppDispatch();
 	const [onePhoneData, setonePhoneData] = useState();
+	const { choiceItem } = useAppSelector((state) => state.filterSlise);
 
 	const addToCart = (onePhoneData) => {
 		dispatch(addItemCart(onePhoneData));
@@ -18,8 +20,8 @@ export default function Card() {
 
 	let likeData = useAppSelector((state) => state.likeSlice.value);
 
-	const likeUpdateInStore = (id) => {
-		dispatch(addLike({ id, liked: true }));
+	const likeUpdateInStore = (onePhoneData) => {
+		dispatch(addLike({ ...onePhoneData, liked: true }));
 	};
 
 	const likeUpdate = (likeData) => {
@@ -28,19 +30,19 @@ export default function Card() {
 			return <IconIsLiked />;
 		} else return <IconLike />;
 	};
-	let getUrl = useParams();
-	getUrl = getUrl.id;
+
+	let getLok = useLocation().pathname;
 
 	useEffect(() => {
 		(async function set() {
-			const res = await fetchOnePhone(getUrl);
+			const res = await fetchOneitem(getLok);
 			setonePhoneData(res.data);
 		})();
 	}, []);
 	// console.log(onePhoneData);
 
 	if (!onePhoneData) {
-		return <h1>Загрузка...</h1>;
+		return <SkeletonCard></SkeletonCard>;
 	}
 	const { id, price, title, characteristics, titleImageUrl, ImagesUrl } =
 		onePhoneData;
@@ -50,7 +52,7 @@ export default function Card() {
 				<div className="productWrapper">
 					<div className="productMain">
 						<div
-							onClick={() => likeUpdateInStore(id)}
+							onClick={() => likeUpdateInStore(onePhoneData)}
 							className="productMain__like"
 						>
 							{likeUpdate(likeData)}

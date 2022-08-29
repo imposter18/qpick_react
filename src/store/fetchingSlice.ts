@@ -1,36 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import { fetchPhones } from "./ActionCreators";
 interface DataState {
 	data: any;
-	isLoading: Boolean;
-	error: String;
+	status: string;
 }
 
 const initialState: DataState = {
 	data: [],
-	isLoading: false,
-	error: "",
+	status: "LOADING",
 };
 
 export const slice = createSlice({
 	name: "phoneData",
 	initialState,
-	reducers: {
-		fetchingPhoneData(state) {
-			state.isLoading = true;
-		},
-		fetchingPhoneDataSuccess(state, action: PayloadAction<[]>) {
-			state.isLoading = false;
-			state.error = "";
+	reducers: {},
+	extraReducers: (builder) => {
+		builder.addCase(fetchPhones.pending, (state, action) => {
+			state.status = "LOADING";
+			state.data = [];
+		});
+
+		builder.addCase(fetchPhones.fulfilled, (state, action) => {
 			state.data = action.payload;
-		},
-		fetchingPhoneDataError(state, action: PayloadAction<string>) {
-			state.isLoading = false;
-			state.error = action.payload;
-		},
+			state.status = "SUCCESS";
+		});
+
+		builder.addCase(fetchPhones.rejected, (state, action) => {
+			state.status = "ERROR";
+			state.data = [];
+		});
 	},
 });
-
-// export const { getPhoneDataSuccess } = slice.actions;
 
 export default slice.reducer;

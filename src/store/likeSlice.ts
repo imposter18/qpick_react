@@ -12,8 +12,8 @@ export const LikeSlice = createSlice({
 	name: "likeSlice",
 	initialState,
 	reducers: {
-		togleLike(state, action: PayloadAction<object>) {
-			state.value = action.payload;
+		removeLikes(state) {
+			state.value = [];
 		},
 		addLike(state, action: PayloadAction<any>) {
 			const findItem = state.value.find(
@@ -29,6 +29,6 @@ export const LikeSlice = createSlice({
 	},
 });
 
-export const { togleLike, addLike } = LikeSlice.actions;
+export const { removeLikes, addLike } = LikeSlice.actions;
 
 export default LikeSlice.reducer;

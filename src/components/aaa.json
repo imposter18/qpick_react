@@ -1,0 +1,80 @@
+[
+	{
+		"id": "16",
+		"title": "BOSE QuietComfort Earbuds True Wireless Soapstone",
+		"types": "headphones",
+		"rating": 4.9,
+		"price": 31999,
+		"characteristics": [
+			"Тип наушников: Вставные",
+			"Соединение: Беспроводное, Bluetooth",
+			"Версия Bluetooth: 5.0",
+			"Частотный диапазон: 20-20000 Гц",
+			"Время непрерывной работы: 6 ч",
+			"Система активного шумоподавления: Есть"
+		],
+		"titleImageUrl": "https://static.eldorado.ru/photos/mv/Big/50144211bb.jpg/resize/700x525/"
+	},
+	{
+		"id": "17",
+		"title": "BOSE QuietComfort Earbuds Sandstone",
+		"types": "headphones",
+		"rating": 4.5,
+		"price": 31199,
+		"characteristics": [
+			"Тип наушников: Вставные",
+			"Соединение: Беспроводное, Bluetooth",
+			"Версия Bluetooth: 5.0",
+			"Вес: 370 г",
+			"Время непрерывной работы: 6 ч",
+			"Система активного шумоподавления: Есть"
+		],
+		"titleImageUrl": "https://static.eldorado.ru/photos/mv/Big/50164430bb.jpg/resize/700x525/",
+		"ImagesUrl": [
+			"https://static.eldorado.ru/photos/mv/Big/30062767bb1.jpg/resize/700x525/",
+			"https://static.eldorado.ru/photos/mv/Big/50164430bb2.jpg/resize/700x525/",
+			"https://static.eldorado.ru/photos/mv/Big/50164430bb3.jpg/resize/700x525/"
+		]
+	},
+	{
+		"id": "18",
+		"title": "Apple AirPods Pro with MagSafe Case",
+		"types": "headphones",
+		"rating": 4.6,
+		"price": 19999,
+		"characteristics": [
+			"Тип наушников: Вставные",
+			"Соединение: Беспроводное, Bluetooth",
+			"Версия Bluetooth: 5.0",
+			"Вес: 56 г",
+			"Время непрерывной работы: 3.5 ч",
+			"Система активного шумоподавления: Есть"
+		],
+		"titleImageUrl": "https://static.eldorado.ru/photos/mv/Big/50171821bb.jpg/resize/700x525/",
+		"ImagesUrl": [
+			"https://static.eldorado.ru/photos/mv/Big/50171821bb1.jpg/resize/700x525/",
+			"https://static.eldorado.ru/photos/mv/Big/50171821bb2.jpg/resize/700x525/",
+			"https://static.eldorado.ru/photos/mv/Big/50171821bb3.jpg/resize/700x525/"
+		]
+	},
+	{
+		"id": "19",
+		"title": "Apple AirPods 2",
+		"types": "headphones",
+		"rating": 4.3,
+		"price": 17690,
+		"characteristics": [
+			"Тип наушников: Вкладыши",
+			"Соединение: Беспроводное, Bluetooth",
+			"Версия Bluetooth: 4.2",
+			"Вес: 10 г",
+			"Время непрерывной работы: 5 ч",
+			"Система активного шумоподавления: Есть"
+		],
+		"titleImageUrl": "https://static.eldorado.ru/photos/mv/Big/400006199bb.jpg/resize/700x525/",
+		"ImagesUrl": [
+			"https://static.eldorado.ru/photos/mv/Pdb/400006199b1.jpg/resize/700x525/",
+			"https://static.eldorado.ru/photos/mv/Pdb/400006199b2.jpg/resize/700x525/"
+		]
+	}
+]

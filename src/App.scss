@@ -101,6 +101,12 @@ body {
 	text-align: left;
 }
 .selectProduct {
+	.active {
+		color: #ffa542;
+		svg {
+			fill: #ffa542;
+		}
+	}
 	display: flex;
 	position: relative;
 	width: 235px;

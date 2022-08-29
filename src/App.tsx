@@ -1,7 +1,5 @@
 import React from "react";
-import { fetchPhones } from "./store/ActionCreators";
 import "./App.scss";
-import { useAppDispatch, useAppSelector } from "./hooks/redux";
 import Home from "./pages/home";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -9,22 +7,9 @@ import EmptyCart from "./components/emptyCart";
 import Order from "./components/order";
 import { Routes, Route } from "react-router-dom";
 import Card from "./pages/Card";
-import { togleLike } from "./store/likeSlice";
 import Likes from "./components/likes";
 
 function App() {
-	const dispatch = useAppDispatch();
-	let phonesData = useAppSelector((state) => state.fetchindDataSlice.data);
-	const { sort } = useAppSelector((state) => state.filterSlise);
-
-	React.useEffect(() => {
-		const sortBy = sort.sortProperty.replace("-", "");
-		const order = sort.sortProperty.includes("-") ? "asc" : "desc";
-		(async function () {
-			await dispatch(fetchPhones({ sortBy, order }));
-		})();
-	}, [sort]);
-
 	return (
 		<div className="App">
 			<div className="mainWrapper">
@@ -32,6 +17,7 @@ function App() {
 				<Routes>
 					<Route path="/" element={<Home />}></Route>
 					<Route path="/phones/:id" element={<Card />}></Route>
+					<Route path="/headphones/:id" element={<Card />}></Route>
 					<Route path="/emptyCart" element={<EmptyCart />}></Route>
 					<Route path="/cart" element={<Order />}></Route>
 					<Route path="/likes" element={<Likes />}></Route>

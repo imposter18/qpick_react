@@ -6,12 +6,11 @@ export default function Likes() {
 
 	const { data } = useAppSelector((state) => state.fetchindDataSlice);
 
-	likeData = data.filter((element: any) => {
-		return likeData.some((item: any) => {
-			return item.id === element.id;
-		});
-	});
-	console.log(![]);
+	// likeData = data.filter((element: any) => {
+	// 	return likeData.some((item: any) => {
+	// 		return item.id === element.id;
+	// 	});
+	// });
 	if (likeData.length <= 0) {
 		return (
 			<h2 className="LikesTitle"> Пока, вы не поставили ни одного лайка </h2>

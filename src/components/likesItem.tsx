@@ -2,11 +2,11 @@ import { title } from "process";
 import { Link } from "react-router-dom";
 
 export default function LikesItem({ data }: any) {
-	const { id, title, titleImageUrl, price } = data;
+	const { id, types, title, titleImageUrl, price } = data;
 	return (
 		<>
 			<div className="likeItem orderItem">
-				<Link to={`/phones/${id}`}>
+				<Link to={`/${types}/${id}`}>
 					<div className="likeItem__img ">
 						<img src={titleImageUrl} alt="card item" />
 					</div>

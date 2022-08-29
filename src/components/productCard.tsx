@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-
+import Skeleton from "./skeletonProdCard";
 import IconIsLiked from "../assets/svg/iconIsLiked";
 import IconLike from "../assets/svg/iconLike";
 
@@ -18,7 +18,7 @@ type productCardProps = {
 
 export default function ProductCard({ data, onClick }: productCardProps) {
 	const { id, title, rating, price, titleImageUrl } = data;
-
+	const { choiceItem } = useAppSelector((state) => state.filterSlise);
 	const likeData = useAppSelector((state) => state.likeSlice.value);
 
 	const likeUpdate = (likeData: any) => {
@@ -27,14 +27,14 @@ export default function ProductCard({ data, onClick }: productCardProps) {
 			return <IconIsLiked />;
 		} else return <IconLike />;
 	};
-	console.log((1000000).toLocaleString("ru"));
+
 	return (
 		<div className="productCard">
-			<div onClick={() => onClick(id)} className="productCard__like">
+			<div onClick={() => onClick(data)} className="productCard__like">
 				{likeUpdate(likeData)}
 			</div>
 			<div>
-				<Link to={`/phones/${id}`}>
+				<Link to={`/${choiceItem}/${id}`}>
 					<div className="productCard__img">
 						<img src={titleImageUrl} alt="phone" />
 					</div>

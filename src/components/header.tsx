@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
+import { useAppDispatch } from "../hooks/redux";
+import { setChoiceItem } from "../store/filterSlise";
 
 export default function Header() {
+	const { choiceItem: item } = useAppSelector((state) => state.filterSlise);
 	const cartItems = useAppSelector(
 		(state) => state.addToCartSlice.totalCounter
 	);
+	const dispatch = useAppDispatch();
 	let likeData = useAppSelector((state) => state.likeSlice.value).length;
-
+	const choiceItem = (value: string) => {
+		dispatch(setChoiceItem(value));
+	};
 	return (
 		<header className="header">
 			<Link to={"/"} className="logo headerLogo">
@@ -14,7 +20,13 @@ export default function Header() {
 			</Link>
 
 			<div className="selectProduct">
-				<Link to={"/"} className="selectProduct__phone">
+				<Link
+					onClick={() => choiceItem("phones")}
+					to={"/"}
+					className={`selectProduct__phone ${
+						item == "phones" ? "active" : null
+					}`}
+				>
 					<svg
 						width="15"
 						height="21"
@@ -29,7 +41,13 @@ export default function Header() {
 					</svg>
 					Телефоны
 				</Link>
-				<Link to={"/"} className="selectProduct__headphone">
+				<Link
+					onClick={() => choiceItem("headphones")}
+					to={"/"}
+					className={`selectProduct__headphone ${
+						item == "headphones" ? "active" : null
+					}`}
+				>
 					<svg
 						width="24"
 						height="24"
