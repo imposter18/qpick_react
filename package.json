@@ -12,7 +12,11 @@
 		"@types/react": "^18.0.17",
 		"@types/react-dom": "^18.0.6",
 		"@types/react-redux": "^7.1.24",
+		"@typescript-eslint/eslint-plugin": "^5.35.1",
+		"@typescript-eslint/parser": "^5.35.1",
 		"axios": "^0.27.2",
+		"eslint": "^8.23.0",
+		"lodash.debounce": "^4.0.8",
 		"node-sass": "^7.0.1",
 		"qc": "^0.0.1",
 		"qs": "^6.11.0",
@@ -48,5 +52,8 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"@types/lodash.debounce": "^4.0.7"
 	}
 }

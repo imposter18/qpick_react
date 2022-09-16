@@ -1,9 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "fs";
+
+type sort = {
+	name: string;
+	sortProperty: string;
+};
 
 interface DataState {
-	sort: any;
+	sort: sort;
 	choiceItem: string;
+	searchValue: string;
 }
 
 const initialState: DataState = {
@@ -12,21 +17,25 @@ const initialState: DataState = {
 		sortProperty: "rating",
 	},
 	choiceItem: "phones",
+	searchValue: "",
 };
 
 export const filterSlice = createSlice({
 	name: "filter",
 	initialState,
 	reducers: {
-		setSort(state, action: PayloadAction<object>) {
+		setSort(state, action: PayloadAction<sort>) {
 			state.sort = action.payload;
 		},
 		setChoiceItem(state, action: PayloadAction<string>) {
 			state.choiceItem = action.payload;
 		},
+		setSearchValue(state, action: PayloadAction<string>) {
+			state.searchValue = action.payload;
+		},
 	},
 });
 
-export const { setSort, setChoiceItem } = filterSlice.actions;
+export const { setSort, setChoiceItem, setSearchValue } = filterSlice.actions;
 
 export default filterSlice.reducer;

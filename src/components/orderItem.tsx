@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../hooks/redux";
-import { addItemCart } from "../store/addToCartSlice";
-import { minusItem } from "../store/addToCartSlice";
+import { addItemCart } from "../redux/Cart/addToCartSlice";
+import { minusItem } from "../redux/Cart/addToCartSlice";
 
 export default function OrderItem({ data }: any) {
 	const { id, types, price, title, titleImageUrl, count } = data;

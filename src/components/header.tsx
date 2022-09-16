@@ -1,7 +1,8 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
 import { useAppDispatch } from "../hooks/redux";
-import { setChoiceItem } from "../store/filterSlise";
+import { setChoiceItem, setSearchValue } from "../redux/Filter/filterSlise";
 
 export default function Header() {
 	const { choiceItem: item } = useAppSelector((state) => state.filterSlise);
@@ -9,9 +10,10 @@ export default function Header() {
 		(state) => state.addToCartSlice.totalCounter
 	);
 	const dispatch = useAppDispatch();
-	let likeData = useAppSelector((state) => state.likeSlice.value).length;
+	const likeData = useAppSelector((state) => state.likeSlice.value).length;
 	const choiceItem = (value: string) => {
 		dispatch(setChoiceItem(value));
+		dispatch(setSearchValue(""));
 	};
 	return (
 		<header className="header">
@@ -24,7 +26,7 @@ export default function Header() {
 					onClick={() => choiceItem("phones")}
 					to={"/"}
 					className={`selectProduct__phone ${
-						item == "phones" ? "active" : null
+						item === "phones" ? "active" : null
 					}`}
 				>
 					<svg
@@ -45,7 +47,7 @@ export default function Header() {
 					onClick={() => choiceItem("headphones")}
 					to={"/"}
 					className={`selectProduct__headphone ${
-						item == "headphones" ? "active" : null
+						item === "headphones" ? "active" : null
 					}`}
 				>
 					<svg

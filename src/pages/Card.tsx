@@ -1,51 +1,53 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
 import { useAppDispatch } from "../hooks/redux";
-import { addItemCart } from "../store/addToCartSlice";
-import { addLike } from "../store/likeSlice";
+import { addItemCart } from "../redux/Cart/addToCartSlice";
+import { addLike } from "../redux/Likes/likeSlice";
 import IconIsLiked from "../assets/svg/iconIsLiked";
 import IconLike from "../assets/svg/iconLike";
-import { fetchOneitem } from "../store/ActionCreators";
+import { fetchOneitem } from "../redux/FetchingData/ActionCreators";
 import SkeletonCard from "../components/skeletonCard";
+import { LikeitemData } from "../redux/Likes/types";
+import { itemData } from "../redux/FetchingData/types";
 
-export default function Card() {
+const Card: React.FC = () => {
 	const dispatch = useAppDispatch();
-	const [onePhoneData, setonePhoneData] = useState();
-	const { choiceItem } = useAppSelector((state) => state.filterSlise);
+	const [onePhoneData, setOnePhoneData] = useState<itemData>();
+	// const { choiceItem } = useAppSelector((state) => state.filterSlise);
 
-	const addToCart = (onePhoneData) => {
+	const addToCart = (onePhoneData: itemData) => {
 		dispatch(addItemCart(onePhoneData));
 	};
 
-	let likeData = useAppSelector((state) => state.likeSlice.value);
+	const likeData = useAppSelector((state) => state.likeSlice.value);
 
-	const likeUpdateInStore = (onePhoneData) => {
+	const likeUpdateInStore = (onePhoneData: itemData) => {
 		dispatch(addLike({ ...onePhoneData, liked: true }));
 	};
 
-	const likeUpdate = (likeData) => {
+	const likeUpdate = (likeData: LikeitemData[]) => {
 		const likeDataItem = likeData.find((item: any) => item.id === id);
 		if (likeDataItem) {
 			return <IconIsLiked />;
 		} else return <IconLike />;
 	};
 
-	let getLok = useLocation().pathname;
+	const getLok = useLocation().pathname;
 
 	useEffect(() => {
 		(async function set() {
 			const res = await fetchOneitem(getLok);
-			setonePhoneData(res.data);
+			if (res) {
+				setOnePhoneData(res.data);
+			}
 		})();
 	}, []);
-	// console.log(onePhoneData);
 
 	if (!onePhoneData) {
 		return <SkeletonCard></SkeletonCard>;
 	}
-	const { id, price, title, characteristics, titleImageUrl, ImagesUrl } =
-		onePhoneData;
+	const { id, price, title, characteristics, titleImageUrl } = onePhoneData;
 	return (
 		<>
 			<main>
@@ -98,4 +100,6 @@ export default function Card() {
 			</main>
 		</>
 	);
-}
+};
+
+export default Card;

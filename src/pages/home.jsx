@@ -2,18 +2,21 @@ import React from "react";
 import ProductCard from "../components/productCard";
 import Sort from "../components/sort";
 import { useAppSelector, useAppDispatch } from "../hooks/redux";
-import { addLike } from "../store/likeSlice";
+import { addLike } from "../redux/Likes/likeSlice";
 import Skeleton from "../components/skeletonProdCard";
 import { useNavigate } from "react-router-dom";
-import { fetchPhones } from "../store/ActionCreators";
+import { fetchPhones } from "../redux/FetchingData/ActionCreators";
 import qs from "qs";
+import Search from "../components/Search/search";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
 	let { data: phonesData, status } = useAppSelector(
 		(state) => state.fetchindDataSlice
 	);
-	const { choiceItem } = useAppSelector((state) => state.filterSlise);
+	const { choiceItem, searchValue } = useAppSelector(
+		(state) => state.filterSlise
+	);
 	const likeUpdateInStore = (data: any) => {
 		dispatch(addLike({ ...data, liked: true }));
 	};
@@ -35,14 +38,15 @@ export default function Home() {
 		const sortBy = sort.sortProperty.replace("-", "");
 		const order = sort.sortProperty.includes("-") ? "asc" : "desc";
 		(async function () {
-			await dispatch(fetchPhones({ sortBy, order, choiceItem }));
+			await dispatch(fetchPhones({ sortBy, order, choiceItem, searchValue }));
 		})();
 		const queryString = qs.stringify({
 			sortBy: sortBy,
 			order: order,
+			search: searchValue,
 		});
 		navigate(`?${queryString}`);
-	}, [sort, choiceItem]);
+	}, [sort, choiceItem, searchValue]);
 
 	return (
 		<>
@@ -65,6 +69,7 @@ export default function Home() {
 						<div className="productList__select">
 							{choiceItem === "phones" ? "Телефоны" : "Наушники"}
 						</div>
+						<Search></Search>
 						<Sort></Sort>
 					</div>
 				</div>

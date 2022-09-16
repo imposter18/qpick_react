@@ -1,8 +1,22 @@
-import { title } from "process";
+import React from "react";
 import { Link } from "react-router-dom";
+import { LikeitemData } from "../redux/Likes/types";
 
-export default function LikesItem({ data }: any) {
+interface ggg {
+	id: string;
+	title: string;
+	price: number;
+	titleImageUrl: string;
+	types: string;
+	rating: number;
+	characteristics: string[];
+	ImagesUrl: string[];
+	liked: boolean;
+}
+
+const LikesItem: React.FC<any> = ({ data }) => {
 	const { id, types, title, titleImageUrl, price } = data;
+	console.log(data);
 	return (
 		<>
 			<div className="likeItem orderItem">
@@ -22,4 +36,5 @@ export default function LikesItem({ data }: any) {
 			</div>
 		</>
 	);
-}
+};
+export default LikesItem;

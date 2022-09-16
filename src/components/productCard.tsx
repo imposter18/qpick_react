@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import Skeleton from "./skeletonProdCard";
 import IconIsLiked from "../assets/svg/iconIsLiked";
 import IconLike from "../assets/svg/iconLike";
+import { LikeitemData } from "../redux/Likes/types";
 
 type productCardProps = {
 	data: {
@@ -21,8 +22,10 @@ export default function ProductCard({ data, onClick }: productCardProps) {
 	const { choiceItem } = useAppSelector((state) => state.filterSlise);
 	const likeData = useAppSelector((state) => state.likeSlice.value);
 
-	const likeUpdate = (likeData: any) => {
-		const likeDataItem = likeData.find((item: any) => item.id === id);
+	const likeUpdate = (likeData: LikeitemData[]) => {
+		const likeDataItem = likeData.find(
+			(item: LikeitemData) => item.id === id.toString()
+		);
 		if (likeDataItem) {
 			return <IconIsLiked />;
 		} else return <IconLike />;
