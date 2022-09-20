@@ -2,21 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LikeitemData } from "../redux/Likes/types";
 
-interface ggg {
-	id: string;
-	title: string;
-	price: number;
-	titleImageUrl: string;
-	types: string;
-	rating: number;
-	characteristics: string[];
-	ImagesUrl: string[];
-	liked: boolean;
+interface LikesItems {
+	data: LikeitemData;
 }
 
-const LikesItem: React.FC<any> = ({ data }) => {
+const LikesItem: React.FC<LikesItems> = ({ data }) => {
 	const { id, types, title, titleImageUrl, price } = data;
-	console.log(data);
 	return (
 		<>
 			<div className="likeItem orderItem">

@@ -6,13 +6,17 @@ import { setSort } from "../redux/Filter/filterSlise";
 type PopupClick = MouseEvent & {
 	path: Node[];
 };
+type sortList = {
+	name: string;
+	sortProperty: string;
+};
 
 export default function Sort() {
 	const sortRef = useRef(null);
 	const dispatch = useAppDispatch();
 	const sort = useAppSelector((state) => state.filterSlise.sort);
 	const [open, setOpen] = useState(false);
-	const sortList: any = [
+	const sortList: sortList[] = [
 		{ name: "популярности (DESC)", sortProperty: "rating" },
 		{ name: "популярности (ASC)", sortProperty: "-rating" },
 		{ name: "цене (DESC)", sortProperty: "price" },
@@ -21,7 +25,7 @@ export default function Sort() {
 		{ name: "алфавиту (ASC)", sortProperty: "-title" },
 	];
 
-	const onClickListItem = (obj: any) => {
+	const onClickListItem = (obj: sortList) => {
 		dispatch(setSort(obj));
 		setOpen(false);
 	};
@@ -70,7 +74,7 @@ export default function Sort() {
 			{open && (
 				<div className="sort__list">
 					<ul>
-						{sortList.map((obj: any, i: number) => (
+						{sortList.map((obj: sortList, i: number) => (
 							<li
 								className={
 									sort.sortProperty === obj.sortProperty ? "active" : ""

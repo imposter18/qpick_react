@@ -1,12 +1,21 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { AppDispatch } from "..";
+// import { AppDispatch } from "..";
+import type { itemData } from "./types";
 
-export const fetchPhones = createAsyncThunk<any>(
+type params = {
+	sortBy: string;
+	order: string;
+	choiceItem: string;
+	searchValue: string;
+};
+
+export const fetchPhones = createAsyncThunk<itemData[], params>(
 	"phones/fetchPhones",
-	async (params: any) => {
+	async (params: params) => {
+		console.log(params);
 		const { sortBy, order, choiceItem, searchValue } = params;
-		const { data } = await axios.get<any>(
+		const { data } = await axios.get<itemData[]>(
 			`https://62f2bd9b18493ca21f3932d6.mockapi.io/${choiceItem}`,
 			{
 				params: {
@@ -21,13 +30,13 @@ export const fetchPhones = createAsyncThunk<any>(
 	}
 );
 
-export const fetchOneitem = async (getLok: any) => {
+export const fetchOneitem = async (getLok: string) => {
 	try {
-		const response = await axios.get(
+		const response = await axios.get<itemData>(
 			`https://62f2bd9b18493ca21f3932d6.mockapi.io${getLok}`
 		);
 		return response;
-	} catch (e: any) {
+	} catch (e) {
 		alert("Ошибка при получении данных");
 	}
 };

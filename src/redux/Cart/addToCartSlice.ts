@@ -2,6 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { calcTotalPrice } from "../../utils/calcTotalPrice";
 import { calcTotalCounter } from "../../utils/calcTotalCounter";
 import { CartitemData } from "./types";
+import { itemData } from "../FetchingData/types";
+
 interface DataState {
 	items: CartitemData[];
 	totalPrice: number;
@@ -18,9 +20,9 @@ export const addToCartSlice = createSlice({
 	name: "cart",
 	initialState,
 	reducers: {
-		addItemCart(state, action: PayloadAction<CartitemData>) {
+		addItemCart(state, action: PayloadAction<itemData>) {
 			const findItem = state.items.find(
-				(obj: CartitemData) => obj.id === action.payload.id
+				(obj: itemData) => obj.id === action.payload.id
 			);
 
 			if (findItem) {
@@ -37,7 +39,7 @@ export const addToCartSlice = createSlice({
 		},
 		minusItem(state, action: PayloadAction<CartitemData>) {
 			const findItem = state.items.find(
-				(obj: any) => obj.id === action.payload.id
+				(obj: CartitemData) => obj.id === action.payload.id
 			);
 
 			if (findItem) {

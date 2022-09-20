@@ -1,24 +1,19 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import Skeleton from "./skeletonProdCard";
+import { Link } from "react-router-dom";
+import { useAppSelector } from "../hooks/redux";
 import IconIsLiked from "../assets/svg/iconIsLiked";
 import IconLike from "../assets/svg/iconLike";
 import { LikeitemData } from "../redux/Likes/types";
+import { itemData } from "../redux/FetchingData/types";
 
 type productCardProps = {
-	data: {
-		id: number;
-		title: string;
-		rating: number;
-		price: number;
-		titleImageUrl: string;
-	};
-	onClick: any;
+	data: itemData;
+	onClick: (data: itemData) => void;
 };
 
-export default function ProductCard({ data, onClick }: productCardProps) {
+const ProductCard: React.FC<productCardProps> = ({ data, onClick }) => {
 	const { id, title, rating, price, titleImageUrl } = data;
+
 	const { choiceItem } = useAppSelector((state) => state.filterSlise);
 	const likeData = useAppSelector((state) => state.likeSlice.value);
 
@@ -67,4 +62,5 @@ export default function ProductCard({ data, onClick }: productCardProps) {
 			</div>
 		</div>
 	);
-}
+};
+export default ProductCard;

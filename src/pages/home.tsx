@@ -8,31 +8,27 @@ import { useNavigate } from "react-router-dom";
 import { fetchPhones } from "../redux/FetchingData/ActionCreators";
 import qs from "qs";
 import Search from "../components/Search/search";
+import type { itemData } from "../redux/FetchingData/types";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
-	let { data: phonesData, status } = useAppSelector(
+
+	const { data: phonesData, status } = useAppSelector(
 		(state) => state.fetchindDataSlice
 	);
 	const { choiceItem, searchValue } = useAppSelector(
 		(state) => state.filterSlise
 	);
-	const likeUpdateInStore = (data: any) => {
+	const { sort } = useAppSelector((state) => state.filterSlise);
+
+	const likeUpdateInStore = (data: itemData) => {
 		dispatch(addLike({ ...data, liked: true }));
 	};
 	const skeletons = [...new Array(10)].map((_, index) => (
 		<Skeleton key={index} />
 	));
-	const items = phonesData.map((data: any, index: number) => (
-		<ProductCard
-			onClick={(data: any) => likeUpdateInStore(data)}
-			key={`${data.id}_${index}`}
-			data={data}
-		></ProductCard>
-	));
 
 	const navigate = useNavigate();
-	const { sort } = useAppSelector((state) => state.filterSlise);
 
 	React.useEffect(() => {
 		const sortBy = sort.sortProperty.replace("-", "");
@@ -47,6 +43,14 @@ export default function Home() {
 		});
 		navigate(`?${queryString}`);
 	}, [sort, choiceItem, searchValue]);
+
+	const items = phonesData.map((data: itemData, index: number) => (
+		<ProductCard
+			onClick={(data: itemData) => likeUpdateInStore(data)}
+			key={`${data.id}_${index}`}
+			data={data}
+		></ProductCard>
+	));
 
 	return (
 		<>

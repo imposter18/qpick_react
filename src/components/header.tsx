@@ -5,16 +5,19 @@ import { useAppDispatch } from "../hooks/redux";
 import { setChoiceItem, setSearchValue } from "../redux/Filter/filterSlise";
 
 export default function Header() {
+	const dispatch = useAppDispatch();
+
 	const { choiceItem: item } = useAppSelector((state) => state.filterSlise);
 	const cartItems = useAppSelector(
 		(state) => state.addToCartSlice.totalCounter
 	);
-	const dispatch = useAppDispatch();
 	const likeData = useAppSelector((state) => state.likeSlice.value).length;
+
 	const choiceItem = (value: string) => {
 		dispatch(setChoiceItem(value));
 		dispatch(setSearchValue(""));
 	};
+
 	return (
 		<header className="header">
 			<Link to={"/"} className="logo headerLogo">

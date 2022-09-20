@@ -1,10 +1,10 @@
 import { useAppSelector } from "../hooks/redux";
 import EmptyCart from "./emptyCart";
 import OrderItem from "./orderItem";
+import type { CartitemData } from "../redux/Cart/types";
 
 export default function Order() {
 	const { items, totalPrice } = useAppSelector((state) => state.addToCartSlice);
-	// console.log(items);
 	if (!totalPrice) {
 		return <EmptyCart />;
 	}
@@ -12,7 +12,7 @@ export default function Order() {
 		<main>
 			<div className="orderWrapper">
 				<div className="orderTitle">Корзина</div>
-				{items.map((data: any, index: number) => (
+				{items.map((data: CartitemData, index: number) => (
 					<OrderItem key={`${data.title}__${index}`} data={data}></OrderItem>
 				))}
 

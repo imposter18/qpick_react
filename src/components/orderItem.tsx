@@ -3,20 +3,26 @@ import { Link } from "react-router-dom";
 import { useAppDispatch } from "../hooks/redux";
 import { addItemCart } from "../redux/Cart/addToCartSlice";
 import { minusItem } from "../redux/Cart/addToCartSlice";
+import type { CartitemData } from "../redux/Cart/types";
 
-export default function OrderItem({ data }: any) {
+interface OrderItem {
+	data: CartitemData;
+}
+
+const OrderItem: React.FC<OrderItem> = ({ data }) => {
+	const dispatch = useAppDispatch();
+
 	const { id, types, price, title, titleImageUrl, count } = data;
-	// console.log(count);
 
 	const calcCost = (price: number, count: number): number => {
 		return price * count;
 	};
-	const dispatch = useAppDispatch();
-	const itemCartPlus = (data: any) => {
+
+	const itemCartPlus = (data: CartitemData) => {
 		dispatch(addItemCart(data));
 	};
 
-	const itemCartMinus = (data: any) => {
+	const itemCartMinus = (data: CartitemData) => {
 		dispatch(minusItem(data));
 	};
 
@@ -47,4 +53,5 @@ export default function OrderItem({ data }: any) {
 			</div>
 		</div>
 	);
-}
+};
+export default OrderItem;

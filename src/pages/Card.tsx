@@ -9,25 +9,25 @@ import IconLike from "../assets/svg/iconLike";
 import { fetchOneitem } from "../redux/FetchingData/ActionCreators";
 import SkeletonCard from "../components/skeletonCard";
 import { LikeitemData } from "../redux/Likes/types";
-import { itemData } from "../redux/FetchingData/types";
+// import { CartitemData } from "../redux/Cart/types";
+import type { itemData } from "../redux/FetchingData/types";
 
 const Card: React.FC = () => {
 	const dispatch = useAppDispatch();
+
 	const [onePhoneData, setOnePhoneData] = useState<itemData>();
-	// const { choiceItem } = useAppSelector((state) => state.filterSlise);
+
+	const likeData = useAppSelector((state) => state.likeSlice.value);
 
 	const addToCart = (onePhoneData: itemData) => {
 		dispatch(addItemCart(onePhoneData));
 	};
-
-	const likeData = useAppSelector((state) => state.likeSlice.value);
-
 	const likeUpdateInStore = (onePhoneData: itemData) => {
 		dispatch(addLike({ ...onePhoneData, liked: true }));
 	};
 
 	const likeUpdate = (likeData: LikeitemData[]) => {
-		const likeDataItem = likeData.find((item: any) => item.id === id);
+		const likeDataItem = likeData.find((item: LikeitemData) => item.id === id);
 		if (likeDataItem) {
 			return <IconIsLiked />;
 		} else return <IconLike />;
@@ -39,6 +39,7 @@ const Card: React.FC = () => {
 		(async function set() {
 			const res = await fetchOneitem(getLok);
 			if (res) {
+				console.log(res);
 				setOnePhoneData(res.data);
 			}
 		})();
@@ -48,6 +49,7 @@ const Card: React.FC = () => {
 		return <SkeletonCard></SkeletonCard>;
 	}
 	const { id, price, title, characteristics, titleImageUrl } = onePhoneData;
+
 	return (
 		<>
 			<main>
