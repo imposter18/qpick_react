@@ -567,7 +567,7 @@ body {
 
 	&__slider {
 		max-width: 500px;
-		max-height: 500px;
+		height: 500px;
 		padding-top: 25px;
 		margin-left: 151px;
 	}
@@ -934,4 +934,54 @@ body {
 }
 
 @media (max-width: 575px) {
+}
+// slider
+.subSlider {
+	margin-top: 24px;
+	margin-left: 45px;
+	user-select: none;
+	display: flex;
+	align-items: center;
+	height: 70px;
+	width: 350px;
+	&__window {
+		height: 100%;
+		width: 300px;
+		overflow: hidden;
+	}
+	&__carousel {
+		height: 100%;
+		float: left;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		transition: translate;
+		transition-property: transform;
+		// transition-duration: 300ms;
+		transition-timing-function: ease-in-out;
+		img {
+			height: 100%;
+			margin: 0 15px;
+			cursor: pointer;
+		}
+	}
+}
+
+.svgLeft {
+	width: 18px;
+	height: 18px;
+}
+.svgRight,
+.svgLeft {
+	cursor: pointer;
+}
+.svgRight {
+	width: 18px;
+	height: 18px;
+	transform: rotate(180deg);
+}
+.activeSliderItem {
+	border: 1px solid rgba(255, 165, 66, 0.7);
+	border-radius: 5px;
 }

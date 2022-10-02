@@ -11,6 +11,7 @@ import SkeletonCard from "../components/skeletonCard";
 import { LikeitemData } from "../redux/Likes/types";
 // import { CartitemData } from "../redux/Cart/types";
 import type { itemData } from "../redux/FetchingData/types";
+import Slider from "../components/Slider/slider";
 
 const Card: React.FC = () => {
 	const dispatch = useAppDispatch();
@@ -39,7 +40,6 @@ const Card: React.FC = () => {
 		(async function set() {
 			const res = await fetchOneitem(getLok);
 			if (res) {
-				console.log(res);
 				setOnePhoneData(res.data);
 			}
 		})();
@@ -48,7 +48,10 @@ const Card: React.FC = () => {
 	if (!onePhoneData) {
 		return <SkeletonCard></SkeletonCard>;
 	}
-	const { id, price, title, characteristics, titleImageUrl } = onePhoneData;
+	const { id, price, title, characteristics, titleImageUrl, ImagesUrl } =
+		onePhoneData;
+
+	const imagesForSlider = [titleImageUrl, ...ImagesUrl];
 
 	return (
 		<>
@@ -63,9 +66,7 @@ const Card: React.FC = () => {
 						</div>
 						<h2 className="productMain__title title">{title}</h2>
 						<div className="productMain__slider">
-							<div className="slider">
-								<img src={titleImageUrl} alt="iphone13" />
-							</div>
+							<Slider images={imagesForSlider}></Slider>
 						</div>
 						<div className="productMain__price price">
 							{price.toLocaleString("ru")} ₽

@@ -13,7 +13,6 @@ type params = {
 export const fetchPhones = createAsyncThunk<itemData[], params>(
 	"phones/fetchPhones",
 	async (params: params) => {
-		console.log(params);
 		const { sortBy, order, choiceItem, searchValue } = params;
 		const { data } = await axios.get<itemData[]>(
 			`https://62f2bd9b18493ca21f3932d6.mockapi.io/${choiceItem}`,
@@ -30,10 +29,10 @@ export const fetchPhones = createAsyncThunk<itemData[], params>(
 	}
 );
 
-export const fetchOneitem = async (getLok: string) => {
+export const fetchOneitem = async (item: string) => {
 	try {
 		const response = await axios.get<itemData>(
-			`https://62f2bd9b18493ca21f3932d6.mockapi.io${getLok}`
+			`https://62f2bd9b18493ca21f3932d6.mockapi.io${item}`
 		);
 		return response;
 	} catch (e) {

@@ -7,5 +7,4 @@ export type itemData = {
 	rating: number;
 	characteristics: [string];
 	ImagesUrl: [string];
-	// count: number;
 };
