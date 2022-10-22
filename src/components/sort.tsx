@@ -17,12 +17,12 @@ export default function Sort() {
 	const sort = useAppSelector((state) => state.filterSlise.sort);
 	const [open, setOpen] = useState(false);
 	const sortList: sortList[] = [
-		{ name: "популярности (DESC)", sortProperty: "rating" },
-		{ name: "популярности (ASC)", sortProperty: "-rating" },
-		{ name: "цене (DESC)", sortProperty: "price" },
-		{ name: "цене (ASC)", sortProperty: "-price" },
-		{ name: "алфавиту (DESC)", sortProperty: "title" },
-		{ name: "алфавиту (ASC)", sortProperty: "-title" },
+		{ name: "популярности ▼ ", sortProperty: "rating" },
+		{ name: "популярности  ▲ ", sortProperty: "-rating" },
+		{ name: "цене  ▼ ", sortProperty: "price" },
+		{ name: "цене  ▲ ", sortProperty: "-price" },
+		{ name: "алфавиту  ▼ ", sortProperty: "title" },
+		{ name: "алфавиту  ▲ ", sortProperty: "-title" },
 	];
 
 	const onClickListItem = (obj: sortList) => {

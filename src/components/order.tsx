@@ -1,17 +1,23 @@
-import { useAppSelector } from "../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import EmptyCart from "./emptyCart";
 import OrderItem from "./orderItem";
 import type { CartitemData } from "../redux/Cart/types";
+import { clearItem } from "../redux/Cart/addToCartSlice";
+import { Link } from "react-router-dom";
 
 export default function Order() {
+	const dispatch = useAppDispatch();
 	const { items, totalPrice } = useAppSelector((state) => state.addToCartSlice);
 	if (!totalPrice) {
 		return <EmptyCart />;
 	}
+	const clearCart = () => {
+		dispatch(clearItem());
+	};
 	return (
 		<main>
 			<div className="orderWrapper">
-				<div className="orderTitle">Корзина</div>
+				<h2 className="orderTitle">Корзина</h2>
 				{items.map((data: CartitemData, index: number) => (
 					<OrderItem key={`${data.title}__${index}`} data={data}></OrderItem>
 				))}
@@ -23,8 +29,17 @@ export default function Order() {
 							{totalPrice.toLocaleString("ru")} ₽
 						</div>
 					</div>
-					<button className="orderConfirm__bottom">Перейти к оформлению</button>
+					<Link to={"/ordering"} className="orderConfirm__bottom">
+						Перейти к оформлению
+					</Link>
 				</div>
+				{totalPrice > 0 ? (
+					<button onClick={() => clearCart()} className="clearCart">
+						Очистить карзину
+					</button>
+				) : (
+					""
+				)}
 			</div>
 		</main>
 	);

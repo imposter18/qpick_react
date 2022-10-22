@@ -2,23 +2,21 @@ import { Link } from "react-router-dom";
 
 export default function EmptyCart() {
 	return (
-		<main>
-			<div className="emptyCartWrapper">
-				<div className="emptyCart">
-					<div className="emptyCart__logo">
-						<img src="../assets/img/cart.png" alt="cart" />
-					</div>
-					<div className="emptyCart__content">
-						<div className="emptyCart__title">Корзина пуста</div>
-						<div className="emptyCart__subTitle">
-							Но это никогда не поздно исправить :)
-						</div>
-					</div>
-					<Link to={"/"} className="emptyCart__button">
-						<span>В каталог товаров</span>
-					</Link>
+		<div className="emptyCartWrapper">
+			<div className="emptyCart">
+				<div className="emptyCart__logo">
+					<img src="../assets/img/cart.png" alt="cart" />
 				</div>
+				<div className="emptyCart__content">
+					<div className="emptyCart__title">Корзина пуста</div>
+					<div className="emptyCart__subTitle">
+						Но это никогда не поздно исправить :)
+					</div>
+				</div>
+				<Link to={"/"} className="emptyCart__button">
+					<span>В каталог товаров</span>
+				</Link>
 			</div>
-		</main>
+		</div>
 	);
 }

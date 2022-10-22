@@ -1,19 +1,18 @@
 import styles from "./Search.module.scss";
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useAppDispatch } from "../../hooks/redux";
 import { setSearchValue } from "../../redux/Filter/filterSlise";
 import { useState } from "react";
 import debounce from "lodash.debounce";
 
-const Search: React.FC<any> = () => {
+const Search: React.FC = () => {
 	const inputRef = React.useRef<HTMLInputElement>(null);
 	const dispatch = useAppDispatch();
-	// const searchValuse = useAppSelector((state) => state.filterSlise.searchValue);
 	const [value, setValue] = useState("");
 
 	const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setValue(event.target.value);
-		// dispatch(setSearchValue(event.target.value));
+
 		updateSearchValue(event.target.value);
 	};
 

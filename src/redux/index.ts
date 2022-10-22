@@ -3,6 +3,7 @@ import fetchindDataSlice from "./FetchingData/fetchingSlice";
 import addToCartSlice from "./Cart/addToCartSlice";
 import likeSlice from "./Likes/likeSlice";
 import filterSlise from "./Filter/filterSlise";
+import orderInfo from "./orderInfo/orderInfoSlice";
 
 export const setupStore = configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ export const setupStore = configureStore({
 		addToCartSlice,
 		likeSlice,
 		filterSlise,
+		orderInfo,
 	},
 	devTools: process.env.NODE_ENV !== "production",
 });

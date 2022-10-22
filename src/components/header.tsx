@@ -3,20 +3,39 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
 import { useAppDispatch } from "../hooks/redux";
 import { setChoiceItem, setSearchValue } from "../redux/Filter/filterSlise";
+import type { LikeitemData } from "../redux/Likes/types";
+import type { CartitemData } from "../redux/Cart/types";
 
 export default function Header() {
 	const dispatch = useAppDispatch();
 
 	const { choiceItem: item } = useAppSelector((state) => state.filterSlise);
-	const cartItems = useAppSelector(
-		(state) => state.addToCartSlice.totalCounter
+	const { totalCounter, items } = useAppSelector(
+		(state) => state.addToCartSlice
 	);
-	const likeData = useAppSelector((state) => state.likeSlice.value).length;
+	const { value: likeData } = useAppSelector((state) => state.likeSlice);
 
 	const choiceItem = (value: string) => {
 		dispatch(setChoiceItem(value));
 		dispatch(setSearchValue(""));
 	};
+	const isMounted = React.useRef(false);
+
+	const writeInlocalStorage = (
+		items: LikeitemData[] | CartitemData[],
+		name: string
+	) => {
+		const json = JSON.stringify(items);
+		localStorage.setItem(`${name}`, json);
+	};
+
+	React.useEffect(() => {
+		if (isMounted.current) {
+			writeInlocalStorage(items, "cart");
+			writeInlocalStorage(likeData, "likes");
+		}
+		isMounted.current = true;
+	}, [items, likeData]);
 
 	return (
 		<header className="header">
@@ -24,7 +43,7 @@ export default function Header() {
 				QPICK
 			</Link>
 
-			<div className="selectProduct">
+			<div className="selectProduct header__select">
 				<Link
 					onClick={() => choiceItem("phones")}
 					to={"/"}
@@ -85,8 +104,8 @@ export default function Header() {
 							/>
 						</svg>
 					</Link>
-					{likeData === 0 ? null : (
-						<div className="userMenu__like-counter">{likeData}</div>
+					{likeData.length === 0 ? null : (
+						<div className="userMenu__like-counter">{likeData.length}</div>
 					)}
 				</div>
 				<div className="userMenu__cart">
@@ -104,8 +123,8 @@ export default function Header() {
 							/>
 						</svg>
 					</Link>
-					{cartItems === 0 ? null : (
-						<div className="userMenu__cart-counter">{cartItems}</div>
+					{totalCounter === 0 ? null : (
+						<div className="userMenu__cart-counter">{totalCounter}</div>
 					)}
 				</div>
 			</div>

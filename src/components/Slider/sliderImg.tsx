@@ -1,6 +1,16 @@
 import React from "react";
 
-const SliderImg: React.FC<any> = ({ img, onClick, carrentMainIng }) => {
+type SliderImgPrors = {
+	onClick: (img: string) => void;
+	img: string;
+	carrentMainIng: string;
+};
+
+const SliderImg: React.FC<SliderImgPrors> = ({
+	img,
+	onClick,
+	carrentMainIng,
+}) => {
 	return (
 		<img
 			onClick={() => onClick(img)}

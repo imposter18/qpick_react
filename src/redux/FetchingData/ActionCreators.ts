@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-// import { AppDispatch } from "..";
 import type { itemData } from "./types";
 
 type params = {
@@ -10,20 +9,19 @@ type params = {
 	searchValue: string;
 };
 
+const API_URL = `https://62f2bd9b18493ca21f3932d6.mockapi.io`;
+
 export const fetchPhones = createAsyncThunk<itemData[], params>(
 	"phones/fetchPhones",
 	async (params: params) => {
 		const { sortBy, order, choiceItem, searchValue } = params;
-		const { data } = await axios.get<itemData[]>(
-			`https://62f2bd9b18493ca21f3932d6.mockapi.io/${choiceItem}`,
-			{
-				params: {
-					sortBy: sortBy,
-					order: order,
-					search: searchValue,
-				},
-			}
-		);
+		const { data } = await axios.get<itemData[]>(`${API_URL}/${choiceItem}`, {
+			params: {
+				sortBy: sortBy,
+				order: order,
+				search: searchValue,
+			},
+		});
 
 		return data;
 	}
@@ -31,9 +29,7 @@ export const fetchPhones = createAsyncThunk<itemData[], params>(
 
 export const fetchOneitem = async (item: string) => {
 	try {
-		const response = await axios.get<itemData>(
-			`https://62f2bd9b18493ca21f3932d6.mockapi.io${item}`
-		);
+		const response = await axios.get<itemData>(`${API_URL}${item}`);
 		return response;
 	} catch (e) {
 		alert("Ошибка при получении данных");

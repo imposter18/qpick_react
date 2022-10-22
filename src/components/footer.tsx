@@ -4,16 +4,18 @@ export default function Footer() {
 	return (
 		<div className="footerWrapper">
 			<footer className="footer">
-				<div className="footer__Logo logo">QPICK</div>
+				<Link to={"/"} className="footer__Logo logo">
+					QPICK
+				</Link>
 				<div className="footer__Nav">
 					<Link to={"/likes"}>Избранное</Link>
 					<Link to={"/cart"}>Корзина</Link>
-					<a href="#">Контакты</a>
+					<Link to={"/contacts"}>Контакты</Link>
 				</div>
 				<div className="footer__LengBlock">
-					<a href="#" className="footer__title">
+					<Link to={"/service"} className="footer__title">
 						Условия сервиса
-					</a>
+					</Link>
 					<div className="footer__lang langSelect">
 						<svg
 							width="20"
@@ -58,8 +60,8 @@ export default function Footer() {
 								strokeLinejoin="round"
 							/>
 						</svg>
-						<div className="langSelect_rus">Рус</div>
-						<div className="langSelect_eng">Eng</div>
+						<div className="langSelect_rus active">Рус</div>
+						{/* <div className="langSelect_eng">Eng</div> */}
 					</div>
 				</div>
 				<div className="footer__Links link">

@@ -66,7 +66,10 @@ const Card: React.FC = () => {
 						</div>
 						<h2 className="productMain__title title">{title}</h2>
 						<div className="productMain__slider">
-							<Slider images={imagesForSlider}></Slider>
+							<Slider
+								titleImageUrl={titleImageUrl}
+								images={imagesForSlider}
+							></Slider>
 						</div>
 						<div className="productMain__price price">
 							{price.toLocaleString("ru")} ₽

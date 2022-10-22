@@ -1,12 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LikeitemData } from "./types";
+
+const getLikesDataFromLS = () => {
+	const data = localStorage.getItem("likes");
+	const value = data ? JSON.parse(data) : [];
+	return { value };
+};
+
 interface DataState {
 	value: LikeitemData[];
 }
 
-const initialState: DataState = {
-	value: [],
-};
+const initialState: DataState = getLikesDataFromLS();
 
 export const LikeSlice = createSlice({
 	name: "likeSlice",
@@ -17,7 +22,7 @@ export const LikeSlice = createSlice({
 		},
 		addLike(state, action: PayloadAction<LikeitemData>) {
 			const findItem = state.value.find(
-				(obj: any) => obj.id === action.payload.id
+				(obj: LikeitemData) => obj.id === action.payload.id
 			);
 
 			if (findItem) {

@@ -1,5 +1,9 @@
-// import { CartItem } from '../redux/cart/types';
+// import { CartItem } from '../redux/cart/types'
+import type { CartitemData } from "../redux/Cart/types";
 
-export const calcTotalPrice = (items: any) => {
-	return items.reduce((sum: any, obj: any) => obj.price * obj.count + sum, 0);
+export const calcTotalPrice = (items: CartitemData[]) => {
+	return items.reduce(
+		(sum: number, obj: CartitemData) => obj.price * obj.count + sum,
+		0
+	);
 };

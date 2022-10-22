@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../components/productCard";
 import Sort from "../components/sort";
 import { useAppSelector, useAppDispatch } from "../hooks/redux";
@@ -9,6 +9,7 @@ import { fetchPhones } from "../redux/FetchingData/ActionCreators";
 import qs from "qs";
 import Search from "../components/Search/search";
 import type { itemData } from "../redux/FetchingData/types";
+import userEvent from "@testing-library/user-event";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
@@ -24,7 +25,7 @@ export default function Home() {
 	const likeUpdateInStore = (data: itemData) => {
 		dispatch(addLike({ ...data, liked: true }));
 	};
-	const skeletons = [...new Array(10)].map((_, index) => (
+	const skeletons = [...new Array(9)].map((_, index) => (
 		<Skeleton key={index} />
 	));
 
@@ -36,13 +37,65 @@ export default function Home() {
 		(async function () {
 			await dispatch(fetchPhones({ sortBy, order, choiceItem, searchValue }));
 		})();
-		const queryString = qs.stringify({
-			sortBy: sortBy,
-			order: order,
-			search: searchValue,
-		});
-		navigate(`?${queryString}`);
+
+		// const testSearchValue = (
+		// 	category: string,
+		// 	sortBy: string,
+		// 	order: string,
+		// 	searchValue: string
+		// ) => {
+		// 	if (searchValue) {
+		// 		return {
+		// 			category,
+		// 			sortBy,
+		// 			order,
+		// 			search: searchValue,
+		// 		};
+		// 	} else {
+		// 		return {
+		// 			category,
+		// 			sortBy,
+		// 			order,
+		// 		};
+		// 	}
+		// };
+
+		// const queryString = qs.stringify(
+		// 	testSearchValue(choiceItem, sortBy, order, searchValue)
+		// );
+		// navigate(`?${queryString}`);
 	}, [sort, choiceItem, searchValue]);
+
+	useEffect(() => {
+		const sortBy = sort.sortProperty.replace("-", "");
+		const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+		const testSearchValue = (
+			category: string,
+			sortBy: string,
+			order: string,
+			searchValue: string
+		) => {
+			if (searchValue) {
+				return {
+					category,
+					sortBy,
+					order,
+					search: searchValue,
+				};
+			} else {
+				return {
+					category,
+					sortBy,
+					order,
+				};
+			}
+		};
+
+		const queryString = qs.stringify(
+			testSearchValue(choiceItem, sortBy, order, searchValue)
+		);
+		navigate(`?${queryString}`);
+	}, [choiceItem, searchValue]);
 
 	const items = phonesData.map((data: itemData, index: number) => (
 		<ProductCard

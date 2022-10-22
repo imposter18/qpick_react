@@ -29,7 +29,8 @@ export const slice = createSlice({
 			}
 		);
 
-		builder.addCase(fetchPhones.rejected, (state) => {
+		builder.addCase(fetchPhones.rejected, (state, action) => {
+			console.log(action.error);
 			state.status = "ERROR";
 			state.data = [];
 		});

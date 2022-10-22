@@ -3,6 +3,7 @@ import { calcTotalPrice } from "../../utils/calcTotalPrice";
 import { calcTotalCounter } from "../../utils/calcTotalCounter";
 import { CartitemData } from "./types";
 import { itemData } from "../FetchingData/types";
+import { getCartFromLS } from "../../utils/getCartFromLS";
 
 interface DataState {
 	items: CartitemData[];
@@ -10,11 +11,7 @@ interface DataState {
 	totalCounter: number;
 }
 
-const initialState: DataState = {
-	items: [],
-	totalPrice: 0,
-	totalCounter: 0,
-};
+const initialState: DataState = getCartFromLS();
 
 export const addToCartSlice = createSlice({
 	name: "cart",
@@ -54,9 +51,14 @@ export const addToCartSlice = createSlice({
 			state.totalPrice = calcTotalPrice(state.items);
 			state.totalCounter = calcTotalCounter(state.items);
 		},
+		clearItem(state) {
+			state.items = [];
+			state.totalCounter = 0;
+			state.totalPrice = 0;
+		},
 	},
 });
 
-export const { addItemCart, minusItem } = addToCartSlice.actions;
+export const { addItemCart, minusItem, clearItem } = addToCartSlice.actions;
 
 export default addToCartSlice.reducer;
