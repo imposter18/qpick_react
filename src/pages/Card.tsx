@@ -9,7 +9,6 @@ import IconLike from "../assets/svg/iconLike";
 import { fetchOneitem } from "../redux/FetchingData/ActionCreators";
 import SkeletonCard from "../components/skeletonCard";
 import { LikeitemData } from "../redux/Likes/types";
-// import { CartitemData } from "../redux/Cart/types";
 import type { itemData } from "../redux/FetchingData/types";
 import Slider from "../components/Slider/slider";
 

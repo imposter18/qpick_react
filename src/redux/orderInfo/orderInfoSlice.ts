@@ -24,7 +24,6 @@ export const orderInfo = createSlice({
 	reducers: {
 		upSity(state, action: PayloadAction<string>) {
 			state.sity = action.payload;
-			console.log(1, typeof action.payload);
 		},
 		upStreet(state, action: PayloadAction<string>) {
 			state.street = action.payload;
@@ -40,7 +39,6 @@ export const orderInfo = createSlice({
 		},
 		upPhoneNum(state, action: PayloadAction<string>) {
 			state.phoneNum = action.payload;
-			console.log(2, typeof action.payload);
 		},
 		clearOrderInput(state) {
 			state.sity = "";

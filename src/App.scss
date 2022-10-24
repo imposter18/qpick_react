@@ -704,6 +704,8 @@ body {
 
 	&__logo {
 		max-width: 410px;
+		min-width: 400px;
+		min-height: 300px;
 		img {
 			width: 100%;
 		}

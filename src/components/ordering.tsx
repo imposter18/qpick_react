@@ -132,6 +132,7 @@ const Ordering = () => {
 										onChange={(e) => dispatch(upSity(e.target.value))}
 										placeholder="Город"
 										className="input-sity"
+										autoFocus
 									></input>
 									<IconWrite className={"svg-input-sity"}></IconWrite>
 									<input
@@ -203,6 +204,7 @@ const Ordering = () => {
 					<div className="userPhoneNumber">
 						<span>Номер получателя</span>
 						<input
+							type="number"
 							placeholder="+7 ___ ___ __ __"
 							value={phoneNum}
 							onChange={(e) => upInputPhoneNumber(e.target.value)}

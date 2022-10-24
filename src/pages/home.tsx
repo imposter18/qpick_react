@@ -9,7 +9,6 @@ import { fetchPhones } from "../redux/FetchingData/ActionCreators";
 import qs from "qs";
 import Search from "../components/Search/search";
 import type { itemData } from "../redux/FetchingData/types";
-import userEvent from "@testing-library/user-event";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
@@ -37,33 +36,6 @@ export default function Home() {
 		(async function () {
 			await dispatch(fetchPhones({ sortBy, order, choiceItem, searchValue }));
 		})();
-
-		// const testSearchValue = (
-		// 	category: string,
-		// 	sortBy: string,
-		// 	order: string,
-		// 	searchValue: string
-		// ) => {
-		// 	if (searchValue) {
-		// 		return {
-		// 			category,
-		// 			sortBy,
-		// 			order,
-		// 			search: searchValue,
-		// 		};
-		// 	} else {
-		// 		return {
-		// 			category,
-		// 			sortBy,
-		// 			order,
-		// 		};
-		// 	}
-		// };
-
-		// const queryString = qs.stringify(
-		// 	testSearchValue(choiceItem, sortBy, order, searchValue)
-		// );
-		// navigate(`?${queryString}`);
 	}, [sort, choiceItem, searchValue]);
 
 	useEffect(() => {

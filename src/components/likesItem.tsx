@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { useAppDispatch } from "../hooks/redux";
 import { LikeitemData } from "../redux/Likes/types";
 import IconIsLiked from "../assets/svg/iconIsLiked";
-import IconLike from "../assets/svg/iconLike";
 import { addLike } from "../redux/Likes/likeSlice";
 
 interface LikesItems {
@@ -13,15 +12,6 @@ interface LikesItems {
 const LikesItem: React.FC<LikesItems> = ({ data }) => {
 	const dispatch = useAppDispatch();
 	const { id, types, title, titleImageUrl, price } = data;
-
-	// const likeData = useAppSelector((state) => state.likeSlice.value);
-
-	// const likeUpdate = (likeData: LikeitemData[]) => {
-	// 	const likeDataItem = likeData.find((item: LikeitemData) => item.id === id);
-	// 	if (likeDataItem) {
-	// 		return <IconIsLiked />;
-	// 	} else return <IconLike />;
-	// };
 
 	const likeUpdateInStore = (data: LikeitemData) => {
 		dispatch(addLike({ ...data, liked: true }));
