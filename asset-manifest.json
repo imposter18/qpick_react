@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/qpick_react/static/css/main.58f684ed.css",
+    "main.js": "/qpick_react/static/js/main.099b760c.js",
+    "index.html": "/qpick_react/index.html",
+    "main.58f684ed.css.map": "/qpick_react/static/css/main.58f684ed.css.map",
+    "main.099b760c.js.map": "/qpick_react/static/js/main.099b760c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.58f684ed.css",
+    "static/js/main.099b760c.js"
+  ]
+}
