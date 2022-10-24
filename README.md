@@ -13,7 +13,7 @@
 - Redux Toolkit
 - React-router-dom
 - Axios
-- [mockapi.io] (как имитация backend)
+- [mockapi.io](mockapi.io) (как имитация backend)
 - БЭМ
 - SCSS
 - Адаптив под большинство дисплеев
