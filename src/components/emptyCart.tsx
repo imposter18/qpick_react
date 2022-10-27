@@ -5,7 +5,7 @@ export default function EmptyCart() {
 		<div className="emptyCartWrapper">
 			<div className="emptyCart">
 				<div className="emptyCart__logo">
-					<img src="../assets/img/cart.png" alt="emptyCart" />
+					<img src="./assets/img/cart.png" alt="emptyCart" />
 				</div>
 				<div className="emptyCart__content">
 					<div className="emptyCart__title">Корзина пуста</div>

@@ -1083,6 +1083,12 @@ body {
 		margin-left: 57px;
 	}
 }
+@media (max-width: 400px) {
+	.subSlider {
+		margin-left: 15px;
+	}
+}
+
 // ordering
 .orderingWrapper {
 	margin: 28px 0 12px 0;
@@ -1105,7 +1111,7 @@ body {
 	grid-template-columns: 1fr 1fr;
 
 	&__left-menu {
-		width: 445px;
+		max-width: 445px;
 		height: 513px;
 		@extend %shadowForBlock;
 		padding: 22px 37px;
@@ -1193,7 +1199,7 @@ body {
 	}
 
 	&__content {
-		width: 371px;
+		max-width: 371px;
 		height: 206px;
 		form {
 			width: 100%;
@@ -1209,10 +1215,12 @@ body {
 			}
 		}
 		.input-sity {
-			width: 370px;
+			max-width: 370px;
+			width: 100%;
 		}
 		.input-street {
-			width: 370px;
+			max-width: 370px;
+			width: 100%;
 		}
 		.input-building {
 			width: 164px;
@@ -1388,6 +1396,31 @@ body {
 		padding: 16px 133px;
 	}
 }
+@media (max-width: 415px) {
+	.orderItem__infoBlock {
+		margin-top: 0;
+	}
+	.ordering__left-menu {
+		padding: 22px 12px;
+		max-width: 361px;
+	}
+	.ordering__button {
+		padding: 16px 66px;
+	}
+	.inputsBlock__content {
+		width: 332px;
+	}
+	.svg-input-sity {
+		left: 304px;
+	}
+	.svg-input-street {
+		left: 304px;
+	}
+	.svg-input-entrance {
+		left: 304px;
+	}
+}
+
 // service
 
 .serviceBlock {
@@ -1421,7 +1454,7 @@ body {
 		max-width: 750px;
 		max-height: 550px;
 		margin: auto;
-		min-width: 431px;
+		min-width: 300px;
 		min-height: 266px;
 		img {
 			width: 100%;
@@ -1491,4 +1524,10 @@ body {
 	background: #ffffff;
 	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 	border-radius: 30px;
+}
+
+@media (max-width: 415px) {
+	.orderConfirmed {
+		padding: 15px 6px 13px 9px;
+	}
 }

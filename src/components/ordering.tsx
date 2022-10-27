@@ -100,7 +100,7 @@ const Ordering = () => {
 								</a>
 								<iframe
 									src="https://yandex.ru/map-widget/v1/-/CCUZUSgmDB"
-									width="370"
+									max-width="370"
 									height="150"
 									frameBorder="1"
 									allowFullScreen
