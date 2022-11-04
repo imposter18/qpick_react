@@ -9,6 +9,7 @@ import { fetchPhones } from "../redux/FetchingData/ActionCreators";
 import qs from "qs";
 import Search from "../components/Search/search";
 import type { itemData } from "../redux/FetchingData/types";
+import bannerImg from "../assets/img/iPhone-13-Pro-Max-silver.png";
 
 export default function Home() {
 	const dispatch = useAppDispatch();
@@ -81,10 +82,7 @@ export default function Home() {
 		<>
 			<div className="bannerWrapper">
 				<article className="banner">
-					<img
-						src="../assets/img/iPhone-13-Pro-Max-silver-1000x1000 1.png"
-						alt="iphone"
-					/>
+					<img src={bannerImg} alt="iphone" />
 					<h1>
 						Выбор покупателей
 						<br />
