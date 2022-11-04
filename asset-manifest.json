@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/qpick_react/static/css/main.66d7ad93.css",
-    "main.js": "/qpick_react/static/js/main.b0868ff8.js",
+    "main.css": "/qpick_react/static/css/main.a9eeb329.css",
+    "main.js": "/qpick_react/static/js/main.aa473d6a.js",
+    "static/media/iPhone-13-Pro-Max-silver.png": "/qpick_react/static/media/iPhone-13-Pro-Max-silver.c547b1be3ed2985989c3.png",
     "index.html": "/qpick_react/index.html",
-    "main.66d7ad93.css.map": "/qpick_react/static/css/main.66d7ad93.css.map",
-    "main.b0868ff8.js.map": "/qpick_react/static/js/main.b0868ff8.js.map"
+    "main.a9eeb329.css.map": "/qpick_react/static/css/main.a9eeb329.css.map",
+    "main.aa473d6a.js.map": "/qpick_react/static/js/main.aa473d6a.js.map"
   },
   "entrypoints": [
-    "static/css/main.66d7ad93.css",
-    "static/js/main.b0868ff8.js"
+    "static/css/main.a9eeb329.css",
+    "static/js/main.aa473d6a.js"
   ]
 }
